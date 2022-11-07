@@ -1,0 +1,9 @@
+<h3 style="text-decoration: underline;">Listado:</h3>
+<br>
+
+<div *ngFor="let libro of libros">
+  <h4>ID: {{ libro.id }}</h4>
+  <h4>Título: {{ libro.titulo }}</h4>
+  <h4>Publicación: {{ libro.fechaPublicacion }}</h4>
+  <img [src]="libro.sourcePortada" width="300px">
+</div>
