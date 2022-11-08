@@ -17,7 +17,7 @@ export class ListadoComponent implements OnInit {
     this.librosService.getLibros().
       subscribe((libros: Libro[]) => {
         this.libros = libros
-        console.log(libros);
+        // console.log(libros);
       });
   }
 

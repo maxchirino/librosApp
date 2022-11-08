@@ -1,21 +1,7 @@
-<h3 style="text-decoration: underline;">Listado:</h3>
-<br>
-<!-- <div class="row gap-4">
-  <div class="col-md-3 col-sm-6" *ngFor="let libro of libros">
-    <div class="card">
-      <img [src]="libro.sourcePortada" class="card-img-top" width="200px">
-      <div class="card-body">
-        <h4 class="card-title">{{ libro.titulo }}</h4>
-        <p class="card-text">Año de publicación: {{ libro.fechaPublicacion.slice(0,4) }}</p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="row gap-2 justify-content-center">
-  <div class="col-lg-2 col-sm-6" *ngFor="let libro of libros">
+<div class="row gap-4 animate__animated animate__fadeInDown">
+  <div class="col d-flex justify-content-center" *ngFor="let libro of libros">
     <div class="book">
-      <a href="#">
+      <a [routerLink]="['/libro', libro.id]">
         <ul>
           <li class="page page3"></li>
           <li class="page page2"></li>
@@ -28,23 +14,4 @@
     </div>
   </div>
 </div>
-<!-- 
-<div style="width: 200px;">
-  <div class="book">
-    <a href="#">
-      <ul>
-        <li class="page page3"></li>
-        <li class="page page2"></li>
-        <li class="page page1"></li>
-        <li class="cover">
-          <img src="https://4.bp.blogspot.com/-sWw38UyloIo/VPZ8Jx6nPEI/AAAAAAAABZQ/htoZS6DcFuw/s1600/la%2Bmuerte%2Bde%2Blord%2Bedgware.jpg" class="card-img-top">
-        </li>
-      </ul>
-    </a>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title">Titulo</h4>
-    <p class="card-text">Año de publicación: 2022</p>
-  </div>
-</div> -->
 

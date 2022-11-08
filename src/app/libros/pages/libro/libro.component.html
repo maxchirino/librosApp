@@ -1,0 +1,60 @@
+<div *ngIf="cargado" class="row">
+  <div class="col-xl-4 col-md-3 col-sm-12 izquierda">
+    <img class="img-fluid mb-2" 
+         [src]="libro.sourcePortada"
+         [alt]="libro.titulo">
+    <div class="d-grid gap-2">
+      <a class="btn btn-success bold"
+         href="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
+         target="_blank">
+         <i class="bi bi-book-fill"></i> Leer libro
+      </a>
+
+    </div>
+  </div>
+
+  <div class="col-xl-8 col-md-9 col-sm-12 derecha">
+    <div class="p-3">
+      <h1>{{ libro.titulo }}</h1>
+      <h6>
+        <a [href]="libro.autores[0].sourceBiografia"
+           target="_blank"
+           class="btn btn-link">
+          {{ libro.autores[0].nombre }} {{ libro.autores[0].apellido }} <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </h6>
+    </div>
+    <br>
+    <div class="bg-light p-3">
+      <h4>Sinopsis</h4>
+      <p>
+        {{ sinopsisIzq }}<span id="dots">...</span><span id="more">{{ sinopsisDer }}</span>
+      </p>
+      <button id="myBtn" 
+              class="btn btn-link btn-sm" 
+              (click)="leerMasLeerMenos()">
+              Leer más
+      </button>
+    </div>
+
+    <div class="p-3">
+      <h4>Detalles de libro</h4>
+      <hr>
+      <div>
+        <h6>Año de publicación</h6>
+        <p> {{ libro.fechaPublicacion }} </p>
+      </div>
+    </div>
+
+    <!-- <a href="https://wikipedia.org"
+       target="_blank"
+       class="btn btn-info btn-sm text-light">
+       Leer más <i class="bi bi-box-arrow-up-right"></i>
+    </a> -->
+
+    <!-- <iframe src="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" height="500px"></iframe> -->
+
+    <!-- <embed src="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" height="680px"> -->
+    
+  </div>
+</div>

@@ -1,3 +1,7 @@
 /* body {
   background: radial-gradient(#1F1F1F, #000 );
 } */
+
+.bold {
+  font-weight: 500;
+}
