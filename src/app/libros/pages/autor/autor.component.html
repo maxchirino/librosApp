@@ -1,4 +1,4 @@
-<div *ngIf="cargado" class="row">
+<div *ngIf="cargado" class="row justify-content-center">
   <div class="col-lg-8 col-md-8">
     <h1>{{ autor.nombre }} {{ autor.apellido }}</h1>
     <p>
@@ -12,29 +12,30 @@
       </a>
     </p>
   </div>
+
   <div class="col-lg-4 col-md-4 p-4 text-center">
     <img [src]="autor.sourceFoto" 
          [alt]="autor.apellido" 
-         class="img-fluid">
+         class="img-fluid rounded rounded-3">
   </div>
-</div>
 
-<h4 class="mb-3">Libros:</h4>
-<div class="row librosDelAutor">
-  <div class="col-12 mb-2" *ngFor="let libro of autor.libros">
-    <div class="row bg-light py-3 ps-1">
-      <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-12 text-center align-items-center">
-        <a [routerLink]="['/libro', libro.id]">
-          <img class="img-fluid" 
-               [src]="libro.sourcePortada" 
-               [alt]="libro.titulo">   
-        </a>
-      </div>
-      <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-12">
-        <h5>{{ libro.titulo }}</h5>
-        <p class="small">
-          Publicado en {{libro.fechaPublicacion}}
-        </p>
+  <div class="row librosDelAutor">
+    <h4 class="mb-3">Libros:</h4>
+    <div class="col-12 mb-2" *ngFor="let libro of autor.libros">
+      <div class="row bg-light py-3">
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-12 text-center align-items-center">
+          <a [routerLink]="['/libro', libro.id]">
+            <img class="img-fluid" 
+                 [src]="libro.sourcePortada" 
+                 [alt]="libro.titulo">   
+          </a>
+        </div>
+        <div class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-12">
+          <h5>{{ libro.titulo }}</h5>
+          <p class="small">
+            Publicado en {{libro.fechaPublicacion}}
+          </p>
+        </div>
       </div>
     </div>
   </div>
