@@ -16,11 +16,19 @@ export class LibrosService {
 
   /* Obtener todos los libros */
   getLibros(): Observable<Libro[]> {
-    return this.http.get<Libro[]>(`${this.baseUrl}/libros`);
+    const url: string = `${this.baseUrl}/libros`;
+    return this.http.get<Libro[]>(url);
   }
 
   /* Obtener libro individual por Id */
   getLibroPorId(id: string): Observable<Libro> {
-    return this.http.get<Libro>(`${this.baseUrl}/libros/${id}`);
+    const url: string = `${this.baseUrl}/libros/${id}`;
+    return this.http.get<Libro>(url);
+  }
+
+  /* Buscar libro por título */
+  buscarLibro(termino: string): Observable<Libro[]> {
+    const url: string = `${this.baseUrl}/libros/${termino}`;
+    return this.http.get<Libro[]>(url);
   }
 }

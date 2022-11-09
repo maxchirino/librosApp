@@ -36,6 +36,7 @@ export class LibroComponent implements OnInit {
       });
   }
 
+  /* Función del botón de Leer más/Leer menos */
   leerMasLeerMenos() {
     let dots = document.getElementById("dots");
     let moreText = document.getElementById("more");

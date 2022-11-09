@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { Libro } from '../../interfaces/libro.interface';
+import { LibrosService } from '../../services/libros.service';
 
 @Component({
   selector: 'app-por-titulo',
   templateUrl: './por-titulo.component.html',
   styleUrls: ['./por-titulo.component.css']
 })
-export class PorTituloComponent implements OnInit {
+export class PorTituloComponent  {
 
-  constructor() { }
+  termino: string = '';
+  hayError: boolean = false;
+  libros: Libro[] = [];
 
-  ngOnInit(): void {
+  constructor(private librosService: LibrosService) { }
+
+  buscar() {
+    this.hayError = false;
+    this.librosService.buscarLibro(this.termino)
+      .subscribe({
+        next: (libros) => {
+          this.libros = libros;
+          // console.log(this.libros);
+        },
+        error: (err) => {
+          console.info(err);
+          this.hayError = true;
+        }
+      })
   }
 
 }

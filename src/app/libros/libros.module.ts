@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { LibrosRoutingModule } from './libros-routing.module';
 import { ListadoComponent } from './pages/listado/listado.component';
@@ -17,6 +18,7 @@ import { PorAutorComponent } from './pages/por-autor/por-autor.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     LibrosRoutingModule
   ]
 })
