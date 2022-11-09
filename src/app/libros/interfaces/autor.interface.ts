@@ -1,3 +1,5 @@
+import { Libro } from "./libro.interface";
+
 export interface Autor {
   id: number;
   nombre: string;
@@ -5,5 +7,5 @@ export interface Autor {
   fechaNacimiento: string;
   sourceFoto: string;
   sourceBiografia: string;
-  libros: null;
+  libros: Libro[];
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Libro } from '../interfaces/libro.interface';
 import { environment } from '../../../environments/environment';
+import { Autor } from '../interfaces/autor.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,14 @@ export class LibrosService {
   }
 
   /* Buscar libro por título */
-  buscarLibro(termino: string): Observable<Libro[]> {
-    const url: string = `${this.baseUrl}/libros/${termino}`;
+  buscarLibroPorTitulo(titulo: string): Observable<Libro[]> {
+    const url: string = `${this.baseUrl}/libros/${titulo}`;
     return this.http.get<Libro[]>(url);
+  }
+
+  /* Buscar autor (por nombre o apellido) */
+  getAutorPorId(id: string): Observable<Autor> {
+    const url: string = `${this.baseUrl}/autores/${id}`;
+    return this.http.get<Autor>(url);
   }
 }

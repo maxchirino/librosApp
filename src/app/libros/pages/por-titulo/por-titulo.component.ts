@@ -18,7 +18,7 @@ export class PorTituloComponent  {
 
   buscar() {
     this.hayError = false;
-    this.librosService.buscarLibro(this.termino)
+    this.librosService.buscarLibroPorTitulo(this.termino)
       .subscribe({
         next: (libros) => {
           this.libros = libros;

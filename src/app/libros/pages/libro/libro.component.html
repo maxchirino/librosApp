@@ -17,11 +17,11 @@
     <div class="p-3">
       <h1>{{ libro.titulo }}</h1>
       <h6>
-        <a [href]="libro.autores[0].sourceBiografia"
-           target="_blank"
+        <a [routerLink]="['/autor', libro.autores[0].id]"
            class="btn btn-link">
-          {{ libro.autores[0].nombre }} {{ libro.autores[0].apellido }} <i class="bi bi-box-arrow-up-right"></i>
+          {{ libro.autores[0].nombre }} {{ libro.autores[0].apellido }}
         </a>
+        
       </h6>
     </div>
     <br>

@@ -25,7 +25,7 @@ export class LibroComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        switchMap(param => this.librosService.getLibroPorId(param['id'])),
+        switchMap(param => this.librosService.getLibroPorId(param['id']))
       )
       .subscribe(libro => {
         this.libro = libro;

@@ -1,0 +1,10 @@
+@media (max-width: 575px) {
+  .librosDelAutor img {
+    height: 300px;
+    margin-bottom: 1.8rem;
+  }
+
+  .librosDelAutor {
+    text-align: center;
+  }
+}
