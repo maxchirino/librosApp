@@ -1,0 +1,11 @@
+.card {
+  cursor: pointer;
+}
+
+.bg-dark {
+  opacity: 0;
+}
+
+.bg-dark:hover {
+  opacity: 0.1;
+}

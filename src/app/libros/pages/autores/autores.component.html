@@ -1,0 +1,11 @@
+<div class="row flex-wrap">
+  <div class="col mb-3" *ngFor="let autor of autores">
+    <div class="card" [routerLink]="['/autor', autor.id]">
+      <div class="bg-dark card-img-overlay">Ver</div>
+      <img [src]="autor.sourceFoto" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{autor.nombre}} {{autor.apellido}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

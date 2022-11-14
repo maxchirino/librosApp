@@ -1,3 +1,7 @@
+.librosDelAutor .row {
+  background-color: hsl(0, 0%, 94%)
+}
+
 @media (max-width: 575px) {
   .librosDelAutor img {
     height: 300px;

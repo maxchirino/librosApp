@@ -6,3 +6,44 @@ img {
 h1 {
   display: inline-block;
 }
+
+header {
+  background-color: rgb(218, 215, 199);
+}
+
+li {
+  cursor: pointer;
+}
+
+.header-brand {
+  cursor: pointer;
+}
+
+.dropdown-menu li {
+  position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+  right: 100%;
+  left: auto;
+}
+
+.dropdown-menu>li:hover>.dropdown-submenu {
+  display: block;
+}
+
+@media screen and (max-width: 576px) {
+  /* .header-brand, .barraBusqueda {
+    margin: auto;
+  } */
+  /* .container-lg {
+    justify-content: center;
+  } */
+}

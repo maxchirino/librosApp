@@ -8,6 +8,7 @@ import { LibroComponent } from './pages/libro/libro.component';
 import { PorTituloComponent } from './pages/por-titulo/por-titulo.component';
 import { PorAutorComponent } from './pages/por-autor/por-autor.component';
 import { AutorComponent } from './pages/autor/autor.component';
+import { AutoresComponent } from './pages/autores/autores.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AutorComponent } from './pages/autor/autor.component';
     LibroComponent,
     PorTituloComponent,
     PorAutorComponent,
-    AutorComponent
+    AutorComponent,
+    AutoresComponent
   ],
   imports: [
     CommonModule,

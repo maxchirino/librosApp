@@ -1,6 +1,57 @@
-<div class="text-center bg-light py-4 mb-4">
-  <div class="d-flex align-items-center justify-content-center">
-    <img src="../assets/book-icon.png" alt="Libro">
-    <h1>Libros</h1>
+<header class="text-center py-4 mb-4 ">
+
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-10 header-brand" routerLink="listado">
+        <div class="d-flex align-items-center logo">
+          <img src="../assets/book-icon.png" alt="Libro">
+          <h1>LibrosApp</h1>
+        </div>
+      </div>
+
+      <div class="col-2 col-md-2 col-sm-10 d-flex align-items-center justify-content-end barraBusqueda">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle me-1" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/listado" class="dropdown-item">Libros</a></li>
+            <li><a routerLink="/autores" class="dropdown-item">Autores</a></li>
+            <li>
+              <a class="dropdown-item">
+                Buscar libro &raquo;
+              </a>
+              <ul class="dropdown-menu dropdown-submenu">
+                <li *ngFor="let item of submenuBuscarLibro" class="dropdown-item" [routerLink]="item.ruta">
+                  {{ item.texto }}
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="dropdown-item">Buscar autor &raquo;</div>
+              <ul class="dropdown-menu dropdown-submenu">
+                <li *ngFor="let item of submenuBuscarAutor" class="dropdown-item" [routerLink]="item.ruta">
+                  {{ item.texto }}
+                </li>
+              </ul>
+              
+            </li>
+            <!-- <li *ngFor="let item of menu" 
+                class="dropdown-item" 
+                [routerLink]="item.ruta" 
+                routerLinkActive="active">
+              {{ item.texto }}
+            </li> -->
+          </ul>
+        </div>
+  
+        <!-- <form autocomplete="off">
+          <input type="text" class="form-control" name="termino" placeholder="Buscar libro...">
+        </form> -->
+      </div>
+    </div>
+
+
   </div>
-</div>
+
+</header>

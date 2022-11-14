@@ -1,13 +1,14 @@
-<div *ngIf="cargado" class="row justify-content-center">
-  <div class="col-lg-8 col-md-8">
+<section *ngIf="cargado" class="row justify-content-center bg-light p-3">
+  <div class="col-lg-8 col-md-8 p-4">
     <h1>{{ autor.nombre }} {{ autor.apellido }}</h1>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A asperiores illum reprehenderit, impedit aperiam quam incidunt eius corrupti assumenda fugiat earum doloribus sint magni consequatur beatae ducimus hic animi voluptates obcaecati maxime. Deleniti ex quaerat in quasi? Facilis iusto labore deleniti nemo iste cum dolorum velit sapiente minima, eligendi debitis eum ab, praesentium, iure amet! Veniam natus numquam modi in.
+      {{autor.descripcion}}
     </p>
 
     <p>
       <strong>Más información: </strong>
-      <a [href]="autor.sourceBiografia">
+      <a [href]="autor.sourceBiografia"
+         target="_blank">
         Wikipedia <i class="bi bi-box-arrow-up-right"></i>
       </a>
     </p>
@@ -22,7 +23,7 @@
   <div class="row librosDelAutor">
     <h4 class="mb-3">Libros:</h4>
     <div class="col-12 mb-2" *ngFor="let libro of autor.libros">
-      <div class="row bg-light py-3">
+      <div class="row py-3">
         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-12 text-center align-items-center">
           <a [routerLink]="['/libro', libro.id]">
             <img class="img-fluid" 
@@ -39,4 +40,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -21,19 +21,37 @@ export class LibrosService {
     return this.http.get<Libro[]>(url);
   }
 
-  /* Obtener libro individual por Id */
+  /* Obtener libro por Id */
   getLibroPorId(id: string): Observable<Libro> {
     const url: string = `${this.baseUrl}/libros/${id}`;
     return this.http.get<Libro>(url);
   }
 
-  /* Buscar libro por título */
+  /* Obtener libro por título */
   buscarLibroPorTitulo(titulo: string): Observable<Libro[]> {
     const url: string = `${this.baseUrl}/libros/${titulo}`;
     return this.http.get<Libro[]>(url);
   }
 
-  /* Buscar autor (por nombre o apellido) */
+  /* Obtener libro por id del autor */
+  buscarLibroPorIdAutor(id: number): Observable<Libro[]> {
+    const url: string = `${this.baseUrl}/libros/buscar-por-autor/${id}`;
+    return this.http.get<Libro[]>(url);
+  }
+
+  /* Obtener libro nombre o apellido del autor */
+  // buscarLibroPorAutor(termino: string): Observable<Libro[]> {
+  //   const url: string = `${this.baseUrl}/libros/buscar-por-autor/${termino}`;
+  //   return this.http.get<Libro[]>(url);
+  // }
+
+  /* Obtener todos los autores */
+  getAutores(): Observable<Autor[]> {
+    const url: string = `${this.baseUrl}/autores`;
+    return this.http.get<Autor[]>(url);
+  }
+
+  /* Obtener autor por id */
   getAutorPorId(id: string): Observable<Autor> {
     const url: string = `${this.baseUrl}/autores/${id}`;
     return this.http.get<Autor>(url);

@@ -1,5 +1,5 @@
-<div *ngIf="cargado" class="row">
-  <div class="col-xl-4 col-md-3 col-sm-12 izquierda">
+<div *ngIf="cargado" class="row bg-light p-3 pt-4">
+  <div class="col-xl-3 col-md-3 col-sm-12 izquierda">
     <img class="img-fluid mb-2" 
          [src]="libro.sourcePortada"
          [alt]="libro.titulo">
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="col-xl-8 col-md-9 col-sm-12 derecha">
+  <div class="col-xl-9 col-md-9 col-sm-12 derecha">
     <div class="p-3">
       <h1>{{ libro.titulo }}</h1>
       <h6>

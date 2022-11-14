@@ -25,7 +25,7 @@ export class PorTituloComponent  {
           // console.log(this.libros);
         },
         error: (err) => {
-          console.info(err);
+          // console.info(err);
           this.hayError = true;
         }
       })
