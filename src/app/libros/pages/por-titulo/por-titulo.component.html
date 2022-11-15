@@ -1,7 +1,7 @@
-<h2 class="mb-3">Búsqueda por título</h2>
+<h3 class="mb-3">Buscar libro por título</h3>
 
 <!-- Barra de búsqueda -->
-<div class="row animate__animated animate__fadeIn">
+<div class="row">
   <div class="col">
     <form (ngSubmit)="buscar()" autocomplete="off">
       <input type="text" 
@@ -14,14 +14,14 @@
 </div>
 
 <!-- Mensaje de error en caso de que no se encuentre un libro -->
-<div *ngIf="hayError" 
-     class="alert alert-danger mt-3">
+<div *ngIf="hayError" class="alert alert-danger mt-4">
   No se encontró el libro buscado
 </div>
 
 <!-- Libro/s encontrados -->
 <div *ngIf="libros.length > 0" class="row gap-5 mt-5">
-  <div class="col d-flex justify-content-center" *ngFor="let libro of libros">
+  <div class="col d-flex justify-content-center animate__animated animate__fadeIn" 
+       *ngFor="let libro of libros">
     <div class="book">
       <a [routerLink]="['/libro', libro.id]">
         <ul>

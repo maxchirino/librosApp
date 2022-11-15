@@ -9,6 +9,7 @@ import { PorTituloComponent } from './pages/por-titulo/por-titulo.component';
 import { PorAutorComponent } from './pages/por-autor/por-autor.component';
 import { AutorComponent } from './pages/autor/autor.component';
 import { AutoresComponent } from './pages/autores/autores.component';
+import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nombre.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AutoresComponent } from './pages/autores/autores.component';
     PorTituloComponent,
     PorAutorComponent,
     AutorComponent,
-    AutoresComponent
+    AutoresComponent,
+    AutorPorNombreComponent
   ],
   imports: [
     CommonModule,

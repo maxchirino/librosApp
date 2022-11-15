@@ -1,0 +1,14 @@
+<h3 class="mb-3">Buscar autor por nombre</h3>
+
+<!-- Barra de búsqueda -->
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="buscar()" autocomplete="off">
+      <input type="text" 
+             class="form-control" 
+             name="termino" 
+             [(ngModel)]="termino" 
+             placeholder="Buscar autor...">
+    </form>
+  </div>
+</div>

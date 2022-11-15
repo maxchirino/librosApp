@@ -12,24 +12,6 @@ interface MenuItem {
 })
 export class HeaderComponent implements OnInit {
 
-  menu: MenuItem[] = [
-    {
-      texto: 'Libros',
-      ruta: './listado'
-    },
-    {
-      texto: 'Autores',
-      ruta: './autores'
-    },
-    {
-      texto: 'Buscar por titulo',
-      ruta: './por-titulo'
-    },
-    {
-      texto: 'Buscar por autor',
-      ruta: './por-autor'
-    }
-  ]
 
   submenuBuscarLibro: MenuItem[] = [
     {
@@ -45,7 +27,7 @@ export class HeaderComponent implements OnInit {
   submenuBuscarAutor: MenuItem[] = [
     {
       texto: 'Por nombre',
-      ruta: './por-nombre'
+      ruta: './autor-por-nombre'
     },
     {
       texto: 'Por apellido',

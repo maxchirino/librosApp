@@ -1,4 +1,12 @@
-img {
+nav {
+  background-color: rgb(218, 215, 199);
+}
+
+.navbar .navbar-nav .nav-item:not(:first-child) {
+  margin-left: 1rem;
+}
+
+/* img {
   display: inline-block;
   max-height: 2.4rem;
 }
@@ -7,9 +15,6 @@ h1 {
   display: inline-block;
 }
 
-header {
-  background-color: rgb(218, 215, 199);
-}
 
 li {
   cursor: pointer;
@@ -37,13 +42,4 @@ li {
 
 .dropdown-menu>li:hover>.dropdown-submenu {
   display: block;
-}
-
-@media screen and (max-width: 576px) {
-  /* .header-brand, .barraBusqueda {
-    margin: auto;
-  } */
-  /* .container-lg {
-    justify-content: center;
-  } */
-}
+} */

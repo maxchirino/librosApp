@@ -40,10 +40,10 @@ export class LibrosService {
   }
 
   /* Obtener libro nombre o apellido del autor */
-  // buscarLibroPorAutor(termino: string): Observable<Libro[]> {
-  //   const url: string = `${this.baseUrl}/libros/buscar-por-autor/${termino}`;
-  //   return this.http.get<Libro[]>(url);
-  // }
+  buscarLibroPorAutor(termino: string): Observable<(Libro[])[]> {
+    const url: string = `${this.baseUrl}/libros/buscar-por-autor/${termino}`;
+    return this.http.get<(Libro[])[]>(url);
+  }
 
   /* Obtener todos los autores */
   getAutores(): Observable<Autor[]> {
@@ -55,5 +55,11 @@ export class LibrosService {
   getAutorPorId(id: string): Observable<Autor> {
     const url: string = `${this.baseUrl}/autores/${id}`;
     return this.http.get<Autor>(url);
+  }
+
+  /* Obtener autor por nombre */
+  buscarAutorPorNombre(nombre: string): Observable<Autor[]> {
+    const url: string = `${this.baseUrl}/autores/nombre/${nombre}`;
+    return this.http.get<Autor[]>(url);
   }
 }

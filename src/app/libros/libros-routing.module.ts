@@ -7,6 +7,7 @@ import { PorTituloComponent } from './pages/por-titulo/por-titulo.component';
 import { PorAutorComponent } from './pages/por-autor/por-autor.component';
 import { AutorComponent } from './pages/autor/autor.component';
 import { AutoresComponent } from './pages/autores/autores.component';
+import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nombre.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'por-titulo', component: PorTituloComponent },
       { path: 'por-autor', component: PorAutorComponent },
       { path: 'autores', component: AutoresComponent},
+      { path: 'autor-por-nombre', component: AutorPorNombreComponent},
       { path: '**', redirectTo: 'listado' }
     ]
   }

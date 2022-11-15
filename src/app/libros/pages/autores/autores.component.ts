@@ -14,10 +14,15 @@ export class AutoresComponent implements OnInit {
   constructor(private librosService: LibrosService) { }
 
   ngOnInit(): void {
-    this.librosService.getAutores().
-      subscribe((autores: Autor[]) => {
-        this.autores = autores
-        console.log(this.autores);
+    this.librosService.getAutores()
+      .subscribe({
+        next: (autores: Autor[]) => {
+          this.autores = autores;
+          console.log(this.autores);
+        },
+        error: (err) => {
+          console.info(err);
+        }
       });
   }
 

@@ -11,22 +11,23 @@ import { LibrosService } from '../../services/libros.service';
 export class PorAutorComponent {
   termino: string = '';
   hayError: boolean = false;
-  libros: Libro[] = [];
-
+  arrLibros: (Libro[])[] = [];
+  libros: Libro[] = []
 
   constructor(private librosService: LibrosService) { }
 
   buscar() {
     this.hayError = false;
-    this.librosService.buscarLibroPorIdAutor(Number(this.termino) || 0)
+    this.librosService.buscarLibroPorAutor(this.termino)
       .subscribe({
         next: (libros) => {
-          this.libros = libros;
-          // console.log(libros);
+          this.arrLibros = libros;
+          /* Como recibo un arreglo de arreglos, uso flat para que quede un simple arreglo de libros */
+          this.libros = this.arrLibros.flat();
         },
         error: (err) => {
-          // console.info(err);
           this.hayError = true;
+          this.arrLibros = [];
           this.libros = [];
         }
       })
