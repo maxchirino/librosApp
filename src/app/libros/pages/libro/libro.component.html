@@ -38,6 +38,7 @@
       </button>
     </div>
 
+    <!-- Detalles del libro -->
     <div class="p-3">
       <h4>Detalles de libro</h4>
       <hr>
@@ -47,15 +48,14 @@
       </div>
     </div>
 
-    <!-- <a href="https://wikipedia.org"
-       target="_blank"
-       class="btn btn-info btn-sm text-light">
-       Leer más <i class="bi bi-box-arrow-up-right"></i>
-    </a> -->
-
-    <!-- <iframe src="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" height="500px"></iframe> -->
-
-    <!-- <embed src="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="100%" height="680px"> -->
-    
+    <!-- Comentarios -->
+    <div class="p-3">
+      <h4>Comentarios</h4>
+      <hr>
+      <div *ngFor="let comentario of comentarios" class="mb-5">
+        <h6><i class="bi bi-person-circle"></i> {{comentario.usuario}}</h6>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{comentario.contenido}}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Libro } from '../../interfaces/libro.interface';
 import { LibrosService } from '../../services/libros.service';
+import { Comentario } from '../../interfaces/comentario.interface';
 
 @Component({
   selector: 'app-libro',
@@ -13,9 +14,9 @@ export class LibroComponent implements OnInit {
 
   libro!: Libro;
   cargado: boolean = false;
-
   sinopsisIzq: string = '';
   sinopsisDer: string = '';
+  comentarios: Comentario[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +35,15 @@ export class LibroComponent implements OnInit {
         this.sinopsisDer = libro.sinopsis.substring(libro.sinopsis.length / 2);
 
       });
+
+    this.activatedRoute.params
+      .pipe(
+        switchMap(param => this.librosService.getComentarios(param['id']))
+      )
+      .subscribe(comentarios => {
+        console.log(comentarios);
+        this.comentarios = comentarios;
+      })
   }
 
   /* Función del botón de Leer más/Leer menos */

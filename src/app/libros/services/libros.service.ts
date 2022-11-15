@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Libro } from '../interfaces/libro.interface';
 import { environment } from '../../../environments/environment';
 import { Autor } from '../interfaces/autor.interface';
+import { Comentario } from '../interfaces/comentario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class LibrosService {
 
   constructor(private http: HttpClient) {}
 
+  /* ----------------------- LIBROS ----------------------- */
   /* Obtener todos los libros */
   getLibros(): Observable<Libro[]> {
     const url: string = `${this.baseUrl}/libros`;
@@ -44,6 +46,8 @@ export class LibrosService {
     const url: string = `${this.baseUrl}/libros/buscar-por-autor/${termino}`;
     return this.http.get<(Libro[])[]>(url);
   }
+
+  /* ----------------------- AUTORES ----------------------- */
 
   /* Obtener todos los autores */
   getAutores(): Observable<Autor[]> {
@@ -81,5 +85,11 @@ export class LibrosService {
     return this.http.get<Autor[]>(url);
   }
 
+  /* ----------------------- COMENTARIOS ----------------------- */
 
+  /* Obtener todos los comentarios */
+  getComentarios(idLibro: string): Observable<Comentario[]> {
+    const url: string = `${this.baseUrl}/libros/${idLibro}/comentarios`;
+    return this.http.get<Comentario[]>(url);
+  }
 }
