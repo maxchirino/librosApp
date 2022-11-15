@@ -6,6 +6,10 @@ nav {
   margin-left: 1rem;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 /* img {
   display: inline-block;
   max-height: 2.4rem;
