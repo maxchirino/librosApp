@@ -10,6 +10,8 @@ import { PorAutorComponent } from './pages/por-autor/por-autor.component';
 import { AutorComponent } from './pages/autor/autor.component';
 import { AutoresComponent } from './pages/autores/autores.component';
 import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nombre.component';
+import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-apellido.component';
+import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nomb
     PorAutorComponent,
     AutorComponent,
     AutoresComponent,
-    AutorPorNombreComponent
+    AutorPorNombreComponent,
+    AutorPorApellidoComponent,
+    AutorPorNombreOApellidoComponent,
   ],
   imports: [
     CommonModule,

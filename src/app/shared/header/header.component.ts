@@ -31,11 +31,11 @@ export class HeaderComponent implements OnInit {
     },
     {
       texto: 'Por apellido',
-      ruta: './por-nombre'
+      ruta: './autor-por-apellido'
     },
     {
       texto: 'Por nombre o apellido',
-      ruta: './por-nombre'
+      ruta: './autor-por-nombre-o-apellido'
     }
   ]
 

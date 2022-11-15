@@ -1,4 +1,4 @@
-<h3 class="mb-3">Buscar autor por nombre</h3>
+<h3 class="mb-3">Buscar autor por apellido</h3>
 
 <!-- Barra de búsqueda -->
 <div class="row">
@@ -16,8 +16,8 @@
 <hr>
 
 <!-- Mensaje de error en caso de que no se encuentre un libro -->
-<div *ngIf="hayError && termino.length > 0" class="alert alert-danger mt-4">
-  No existe un autor con ese nombre
+<div *ngIf="hayError" class="alert alert-danger mt-4">
+  No existe un autor con ese apellido
 </div>
 
 <!-- Resultados -->

@@ -22,6 +22,7 @@ export class PorTituloComponent  {
       .subscribe({
         next: (libros) => {
           this.libros = libros;
+          this.hayError = false;
           // console.log(this.libros);
         },
         error: (err) => {

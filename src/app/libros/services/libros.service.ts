@@ -62,4 +62,24 @@ export class LibrosService {
     const url: string = `${this.baseUrl}/autores/nombre/${nombre}`;
     return this.http.get<Autor[]>(url);
   }
+
+  /* Obtener autor por apellido */
+  buscarAutorPorApellido(apellido: string): Observable<Autor[]> {
+    const url: string = `${this.baseUrl}/autores/apellido/${apellido}`;
+    return this.http.get<Autor[]>(url);
+  }
+
+  /* Obtener autor por nombre o apellido */
+  buscarAutorPorNombreOApellido(nombreOApellido: string): Observable<Autor[]> {
+    const url: string = `${this.baseUrl}/autores/buscar/${nombreOApellido}`;
+    return this.http.get<Autor[]>(url);
+  }
+
+  /* Ordenar autores */
+  ordenarAutores(ordenarPor: string, tipoOrden: string): Observable<Autor[]> {
+    const url: string = `${this.baseUrl}/autores/${ordenarPor}/${tipoOrden}`;
+    return this.http.get<Autor[]>(url);
+  }
+
+
 }

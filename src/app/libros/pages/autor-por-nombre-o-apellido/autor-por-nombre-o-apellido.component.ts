@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { LibrosService } from '../../services/libros.service';
 import { Autor } from '../../interfaces/autor.interface';
+import { LibrosService } from '../../services/libros.service';
 
 @Component({
-  selector: 'app-autor-por-nombre',
-  templateUrl: './autor-por-nombre.component.html',
-  styleUrls: ['./autor-por-nombre.component.css']
+  selector: 'app-autor-por-nombre-o-apellido',
+  templateUrl: './autor-por-nombre-o-apellido.component.html',
+  styleUrls: ['./autor-por-nombre-o-apellido.component.css']
 })
-export class AutorPorNombreComponent  {
+export class AutorPorNombreOApellidoComponent {
+
   termino: string = '';
   hayError: boolean = false;
   autores: Autor[] = [];
@@ -15,7 +16,7 @@ export class AutorPorNombreComponent  {
   constructor(private librosService: LibrosService) { }
 
   buscar() {
-    this.librosService.buscarAutorPorNombre(this.termino)
+    this.librosService.buscarAutorPorNombreOApellido(this.termino)
       .subscribe({
         next: (autores: Autor[]) => {
           this.autores = autores;
@@ -28,4 +29,5 @@ export class AutorPorNombreComponent  {
         }
       })
   }
+
 }

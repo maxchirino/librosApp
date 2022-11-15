@@ -8,6 +8,8 @@ import { PorAutorComponent } from './pages/por-autor/por-autor.component';
 import { AutorComponent } from './pages/autor/autor.component';
 import { AutoresComponent } from './pages/autores/autores.component';
 import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nombre.component';
+import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-apellido.component';
+import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,8 @@ const routes: Routes = [
       { path: 'por-autor', component: PorAutorComponent },
       { path: 'autores', component: AutoresComponent},
       { path: 'autor-por-nombre', component: AutorPorNombreComponent},
+      { path: 'autor-por-apellido', component: AutorPorApellidoComponent },
+      { path: 'autor-por-nombre-o-apellido', component: AutorPorNombreOApellidoComponent},
       { path: '**', redirectTo: 'listado' }
     ]
   }
