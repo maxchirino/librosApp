@@ -3,10 +3,16 @@
 <!-- Barra de búsqueda -->
 <div class="row">
   <div class="col">
+    <!-- NO FUNCIONA, VER COMO SOLUCIONAR -->
+    <!-- <app-input-autor [buscar]="buscar" 
+                     [termino]="termino" 
+                     [name]="name">
+    </app-input-autor> -->
+    
     <form (ngSubmit)="buscar()" autocomplete="off">
       <input type="text" 
              class="form-control" 
-             name="termino" 
+             [name]="name" 
              [(ngModel)]="termino" 
              placeholder="Buscar autor...">
     </form>
@@ -21,6 +27,6 @@
 </div>
 
 <!-- Resultados -->
-<div class="mb-3 bg-light" *ngFor="let autor of autores">
+<div *ngFor="let autor of autores">
   <app-resultado-autor [autor]="autor"></app-resultado-autor>
 </div>

@@ -13,7 +13,7 @@ import { HeaderComponent } from './shared/header/header.component';
     AppComponent,
     SidemenuComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

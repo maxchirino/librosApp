@@ -2,7 +2,7 @@ nav {
   background-color: rgb(218, 215, 199);
 }
 
-.navbar .navbar-nav .nav-item:not(:first-child) {
+.navbar .navbar-nav .nav-item {
   margin-left: 1rem;
 }
 

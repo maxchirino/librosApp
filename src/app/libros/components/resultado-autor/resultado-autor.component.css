@@ -1,0 +1,12 @@
+.btn-link {
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.col-md-2 {
+  padding: 1rem !important;
+}
+
+img {
+  cursor: pointer;
+}

@@ -63,6 +63,7 @@ export class LibrosService {
 
   /* Obtener autor por nombre */
   buscarAutorPorNombre(nombre: string): Observable<Autor[]> {
+    // console.log(nombre);
     const url: string = `${this.baseUrl}/autores/nombre/${nombre}`;
     return this.http.get<Autor[]>(url);
   }

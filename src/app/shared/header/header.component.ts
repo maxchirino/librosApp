@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   submenuBuscarLibro: MenuItem[] = [
     {
       texto: 'Por título',
-      ruta: './por-titulo'
+      ruta: './libro-por-titulo'
     },
     {
       texto: 'Por autor',
-      ruta: './por-autor'
+      ruta: './libro-por-autor'
     }
   ]
 

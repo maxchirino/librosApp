@@ -14,6 +14,7 @@ import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-
 import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
 import { LibroAnimadoComponent } from './components/libro-animado/libro-animado.component';
 import { ResultadoAutorComponent } from './components/resultado-autor/resultado-autor.component';
+import { InputAutorComponent } from './components/input-autor/input-autor.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ResultadoAutorComponent } from './components/resultado-autor/resultado-
     AutorPorNombreOApellidoComponent,
     LibroAnimadoComponent,
     ResultadoAutorComponent,
+    InputAutorComponent,
   ],
   imports: [
     CommonModule,
