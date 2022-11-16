@@ -24,17 +24,6 @@
 <div *ngIf="libros.length > 0" class="row gap-5 mt-5">
   <div class="col d-flex justify-content-center animate__animated animate__fadeIn" 
        *ngFor="let libro of libros">
-    <div class="book">
-      <a [routerLink]="['/libro', libro.id]">
-        <ul>
-          <li class="page page3"></li>
-          <li class="page page2"></li>
-          <li class="page page1"></li>
-          <li class="cover">
-            <img [src]="libro.sourcePortada" class="card-img-top">
-          </li>
-        </ul>
-      </a>
-    </div>
+    <app-libro-animado [libroHijo]="libro"></app-libro-animado>
   </div>
 </div>
