@@ -1,0 +1,8 @@
+.container-lg {
+  height: 100vh;
+}
+
+.login {
+  width: 100%;
+  max-width: 25rem !important;
+}

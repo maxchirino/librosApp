@@ -1,0 +1,8 @@
+.container-lg {
+  height: 100vh;
+}
+
+.registro {
+  width: 100%;
+  max-width: 25rem !important;
+}

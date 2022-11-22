@@ -10,10 +10,12 @@ import { AutoresComponent } from './pages/autores/autores.component';
 import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nombre.component';
 import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-apellido.component';
 import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent,
     children: [
       { path: 'listado', component: ListadoComponent },
       { path: 'libro/:id', component: LibroComponent },

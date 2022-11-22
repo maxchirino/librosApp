@@ -15,6 +15,8 @@ import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-ape
 import { LibroAnimadoComponent } from './components/libro-animado/libro-animado.component';
 import { ResultadoAutorComponent } from './components/resultado-autor/resultado-autor.component';
 import { InputAutorComponent } from './components/input-autor/input-autor.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -31,11 +33,13 @@ import { InputAutorComponent } from './components/input-autor/input-autor.compon
     LibroAnimadoComponent,
     ResultadoAutorComponent,
     InputAutorComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    LibrosRoutingModule
+    LibrosRoutingModule,
+    SharedModule
   ]
 })
 export class LibrosModule { }

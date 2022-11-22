@@ -1,0 +1,50 @@
+<div class="container-lg d-flex align-items-center justify-content-center flex-column">
+  <div class="login bg-light rounded rounded-4 p-5">
+    <h1 class="mb-5 text-center">Login</h1>
+    <!-- <form action="http://192.168.0.174:8080/api/cuentas/login" method="post"> -->
+    <form (ngSubmit)="login()" [formGroup]="miFormulario">
+      <!-- Email input -->
+      <div class="mb-4">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <span class="form-text text-danger" *ngIf="campoNoEsValido('email')">
+          Este campo es obligatorio
+        </span>
+      </div>
+
+      <!-- Password input -->
+      <div class="mb-4">
+        <label class="form-label" for="password">Contraseña</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        <span class="form-text text-danger" *ngIf="campoNoEsValido('password')">
+          Este campo es obligatorio
+        </span>
+      </div>
+
+      <!-- Botón de ingresar -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary mb-4">Ingresar</button>
+      </div>
+
+      <!-- Botón de registrarse -->
+      <div class="text-center">
+        <p>¿No tiene una cuenta? <a routerLink="/auth/registro">Registrarse</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Testing -->
+  <span><b>Valid</b></span>
+  <pre>{{miFormulario.valid}}</pre>
+
+  <!-- Pristine: no se han cambiado ninguno de los valores con los que se presentó el formulario -->
+  <span><b>Pristine</b></span>
+  <pre>{{miFormulario.pristine}}</pre>
+
+  <!-- Touched: el usuario ha tocado o no el formulario (no hace falta hacer cambios, solo con clickearlo esto se vuelve true) -->
+  <span><b>Touched</b></span>
+  <pre>{{miFormulario.touched}}</pre>
+
+  <span><b>Value</b></span>
+  <pre>{{miFormulario.value | json}}</pre>
+</div>

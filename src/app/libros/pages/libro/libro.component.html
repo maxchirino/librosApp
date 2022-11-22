@@ -17,7 +17,7 @@
     <div class="p-3">
       <h1>{{ libro.titulo }}</h1>
       <h6>
-        <a [routerLink]="['/autor', libro.autores[0].id]"
+        <a [routerLink]="['/libros/autor', libro.autores[0].id]"
            class="btn btn-link p-0">
           {{ libro.autores[0].nombre }} {{ libro.autores[0].apellido }}
         </a>
