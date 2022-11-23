@@ -9,6 +9,7 @@ import { map, Observable, of, tap } from 'rxjs';
 import { Auth } from '../interfaces/auth.interface';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthService {
     return true;
   }
 
-  login(body:any): Observable<Auth> {
+  login(body: any): Observable<Auth> {
     const url: string = `${this.baseUrl}/cuentas/login`;
     return this.http.post<Auth>(url, body).pipe(
       tap(auth => this._auth = auth), /* Pongo la respuesta en la propiedad local */
@@ -44,5 +45,10 @@ export class AuthService {
   logout() {
     this._auth = undefined;
     localStorage.removeItem('token');
+  }
+
+  register(body: any): Observable<Auth> {
+    const url: string = `${this.baseUrl}/cuentas/registrar`;
+    return this.http.post<Auth>(url, body);
   }
 }

@@ -1,5 +1,6 @@
+
 <div class="container-lg d-flex align-items-center justify-content-center flex-column">
-  <div class="login bg-light rounded rounded-4 p-5">
+  <div class="login bg-light rounded rounded-4 p-5 shadow">
     <h1 class="mb-5 text-center">Login</h1>
 
     <div class="alert alert-danger" *ngIf="loginIncorrecto">
@@ -12,7 +13,7 @@
         <label class="form-label" for="email">Email</label>
         <input type="email" id="email" class="form-control" formControlName="email">
         <span class="form-text text-danger" *ngIf="campoNoEsValido('email')">
-          Este campo es obligatorio
+          Email inválido
         </span>
       </div>
 
@@ -21,7 +22,7 @@
         <label class="form-label" for="password">Contraseña</label>
         <input type="password" id="password" class="form-control" formControlName="password">
         <span class="form-text text-danger" *ngIf="campoNoEsValido('password')">
-          Este campo es obligatorio
+          Contraseña inválida
         </span>
       </div>
 

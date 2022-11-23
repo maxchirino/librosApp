@@ -39,6 +39,8 @@ export class AuthGuard implements CanActivate, CanLoad {
     if (this.authService.auth.token || this.authService.verificarAutenticacion()) {
       return true;
     }
+    console.log('this.authService.auth.token: ', this.authService.auth.token);
+    console.log('this.authService.verificarAutenticacion(): ', this.authService.verificarAutenticacion());
     console.log('Bloqueado por el AuthGuard (canLoad)');
     this.router.navigate(['./auth/login']);
     return false;

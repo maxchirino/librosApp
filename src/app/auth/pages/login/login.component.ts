@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { environment } from 'src/environments/environment';
+import { Auth } from '../../interfaces/auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  baseUrl: string = environment.baseURL;
-  resp: any;
   loginIncorrecto: boolean = false;
-
-  /* Getter para obtener el auth que viene del servicio */
-  // get auth() {
-  //   return this.authService.auth;
-  // }
 
   constructor(
     private authService: AuthService,
@@ -30,7 +23,7 @@ export class LoginComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     email:    [, [Validators.required, Validators.minLength(6), Validators.email]],
     password: [, [Validators.required, Validators.minLength(8)]]
-  })
+  });
 
   ngOnInit(): void {
   }
@@ -45,10 +38,9 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.miFormulario.value).subscribe({
-      next: (resp) => {
-        /* La respuesta contiene el token y la expiracion (tipo Auth) */
-        this.resp = resp;
+      next: (resp: Auth) => {
         this.loginIncorrecto = false;
+        console.log('Iniciando sesión...');
         this.router.navigate(['./libros']);
       },
       error: () => {

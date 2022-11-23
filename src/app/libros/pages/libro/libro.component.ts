@@ -41,7 +41,7 @@ export class LibroComponent implements OnInit {
         switchMap(param => this.librosService.getComentarios(param['id']))
       )
       .subscribe(comentarios => {
-        console.log(comentarios);
+        // console.log(comentarios);
         this.comentarios = comentarios;
       })
   }
