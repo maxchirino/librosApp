@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: 'libros',
     loadChildren: () => import('./libros/libros.module').then(m => m.LibrosModule),
-    canLoad: [AuthGuard],
-    canActivate: [AuthGuard]
+    canLoad: [AuthGuard], /* Usado para prevenir que la app cargue el modulo entero */
+    canActivate: [AuthGuard] /* Usado para prevenir que el usuario acceda a ciertas rutas */
   },
   {
     path: '**',

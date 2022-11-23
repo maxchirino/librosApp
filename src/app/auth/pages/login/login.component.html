@@ -1,7 +1,11 @@
 <div class="container-lg d-flex align-items-center justify-content-center flex-column">
   <div class="login bg-light rounded rounded-4 p-5">
     <h1 class="mb-5 text-center">Login</h1>
-    <!-- <form action="http://192.168.0.174:8080/api/cuentas/login" method="post"> -->
+
+    <div class="alert alert-danger" *ngIf="loginIncorrecto">
+      Correo o contraseña incorrecta
+    </div>
+    
     <form (ngSubmit)="login()" [formGroup]="miFormulario">
       <!-- Email input -->
       <div class="mb-4">
@@ -34,17 +38,17 @@
   </div>
 
   <!-- Testing -->
-  <span><b>Valid</b></span>
-  <pre>{{miFormulario.valid}}</pre>
+  <!-- <span><b>Valid</b></span> -->
+  <!-- <pre>{{miFormulario.valid}}</pre> -->
 
   <!-- Pristine: no se han cambiado ninguno de los valores con los que se presentó el formulario -->
-  <span><b>Pristine</b></span>
-  <pre>{{miFormulario.pristine}}</pre>
+  <!-- <span><b>Pristine</b></span> -->
+  <!-- <pre>{{miFormulario.pristine}}</pre> -->
 
   <!-- Touched: el usuario ha tocado o no el formulario (no hace falta hacer cambios, solo con clickearlo esto se vuelve true) -->
-  <span><b>Touched</b></span>
-  <pre>{{miFormulario.touched}}</pre>
+  <!-- <span><b>Touched</b></span> -->
+  <!-- <pre>{{miFormulario.touched}}</pre> -->
 
-  <span><b>Value</b></span>
-  <pre>{{miFormulario.value | json}}</pre>
+  <!-- <span><b>Value</b></span> -->
+  <!-- <pre>{{miFormulario.value | json}}</pre> -->
 </div>

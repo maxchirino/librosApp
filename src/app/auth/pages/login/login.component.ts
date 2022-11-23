@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Auth } from '../../interfaces/auth.interface';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +14,22 @@ export class LoginComponent implements OnInit {
 
   baseUrl: string = environment.baseURL;
   resp: any;
+  loginIncorrecto: boolean = false;
+
+  /* Getter para obtener el auth que viene del servicio */
+  // get auth() {
+  //   return this.authService.auth;
+  // }
 
   constructor(
-    private http: HttpClient,
-    private fb: FormBuilder
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   miFormulario: FormGroup = this.fb.group({
-    email: [, Validators.required],
-    password: [, Validators.required]
+    email:    [, [Validators.required, Validators.minLength(6), Validators.email]],
+    password: [, [Validators.required, Validators.minLength(8)]]
   })
 
   ngOnInit(): void {
@@ -36,18 +44,24 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let url: string = `${this.baseUrl}/cuentas/login`;
-    this.http.post(url, this.miFormulario.value).subscribe(resp => {
-      this.resp = resp;
-      console.log(this.resp);
-    });
+    this.authService.login(this.miFormulario.value).subscribe({
+      next: (resp) => {
+        /* La respuesta contiene el token y la expiracion (tipo Auth) */
+        this.resp = resp;
+        this.loginIncorrecto = false;
+        this.router.navigate(['./libros']);
+      },
+      error: () => {
+        this.loginIncorrecto = true;
+      }
+    })
 
     this.miFormulario.reset();
   }
 
   campoNoEsValido(campo: string) {
     return this.miFormulario.controls[campo].errors &&
-      this.miFormulario.controls[campo].touched;
+           this.miFormulario.controls[campo].touched;
   }
 
 }
