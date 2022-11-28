@@ -11,25 +11,47 @@
       <!-- Email input -->
       <div class="mb-4">
         <label class="form-label" for="email">Email</label>
-        <input type="email" id="email" class="form-control" formControlName="email">
-        <span class="form-text text-danger" *ngIf="campoNoEsValido('email')">
-          Email inválido
-        </span>
-        <div class="form-text">
-          Ejemplo: john@email.com
-        </div>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="john@email.com">
+
+        <!-- Mensaje de error de validación -->
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['email'].hasError('required') || 
+                           miFormulario.controls['email'].hasError('pattern') ? 'text-danger' : 'text-success'">
+            Debe ser un email válido.
+          </div>
       </div>
     
       <!-- Password input -->
       <div class="mb-4">
         <label class="form-label" for="password">Contraseña</label>
-        <input type="password" id="password" class="form-control" formControlName="password">
-        <span class="form-text text-danger" *ngIf="campoNoEsValido('password')">
-          La contraseña no cumple con los requisitos
-        </span>
-        <div class="form-text">
-          Debe contener como mínimo 8 carácteres, incluir letras, al menos un número, una mayúscula, y un carácter especial.
-        </div>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Ingrese la contraseña">
+
+        <!-- Mensajes de errores de validacion -->
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['password'].hasError('required') || 
+                           miFormulario.controls['password'].hasError('minlength') ? 'text-danger' : 'text-success'">
+            Debe tener al menos <strong>8 carácteres</strong>.
+          </div>
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['password'].hasError('required') || 
+                           miFormulario.controls['password'].hasError('hasNumber') ? 'text-danger' : 'text-success'">
+            Debe contener al menos <strong>1 número</strong>.
+          </div>
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['password'].hasError('required') || 
+                           miFormulario.controls['password'].hasError('hasUppercaseLetter') ? 'text-danger' : 'text-success'">
+            Debe contener al menos <strong>1 mayúscula</strong>.
+          </div>
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['password'].hasError('required') || 
+                           miFormulario.controls['password'].hasError('hasLowercaseLetter') ? 'text-danger' : 'text-success'">
+            Debe contener al menos <strong>1 minúscula</strong>.
+          </div>
+          <div class="form-text"
+                [ngClass]="miFormulario.controls['password'].hasError('required') || 
+                           miFormulario.controls['password'].hasError('hasSpecialCharacter') ? 'text-danger' : 'text-success'">
+            Debe contener al menos <strong>1 carácter especial</strong>.
+          </div>
       </div>
     
       <!-- Botón de ingresar -->
@@ -45,15 +67,16 @@
   </div>
 
   <!-- Testing -->
-  <!-- <span><b>Valid</b></span>
-  <pre>{{miFormulario.valid}}</pre> -->
-
-  <!-- Pristine: no se han cambiado ninguno de los valores con los que se presentó el formulario -->
-  <!-- <span><b>Pristine</b></span>
-  <pre>{{miFormulario.pristine}}</pre> -->
-
   <!-- Touched: el usuario ha tocado o no el formulario (no hace falta hacer cambios, solo con clickearlo esto se vuelve true) -->
-  <!-- <span><b>Touched</b></span>
+  <!-- Pristine: no se han cambiado ninguno de los valores con los que se presentó el formulario -->
+
+  <!-- <span><b>Valid</b></span>
+  <pre>{{miFormulario.valid}}</pre>
+
+  <span><b>Pristine</b></span>
+  <pre>{{miFormulario.pristine}}</pre>
+
+  <span><b>Touched</b></span>
   <pre>{{miFormulario.touched}}</pre>
 
   <span><b>Value</b></span>

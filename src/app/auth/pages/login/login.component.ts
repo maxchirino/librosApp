@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { Auth } from '../../interfaces/auth.interface';
+import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,22 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private validatorsService: ValidatorsService,
     private fb: FormBuilder,
     private router: Router
   ) { }
 
   miFormulario: FormGroup = this.fb.group({
-    email:    [, [Validators.required, Validators.minLength(6), Validators.email]],
-    password: [, [Validators.required, Validators.minLength(8)]]
+    email:    [, [Validators.required, 
+                  Validators.minLength(6), 
+                  Validators.email,
+                  Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+    password: [, [Validators.required, 
+                  Validators.minLength(8),
+                  this.validatorsService.patternValidator(/\d/, { hasNumber: true }),
+                  this.validatorsService.patternValidator(/[A-Z]/, { hasUppercaseLetter: true }),
+                  this.validatorsService.patternValidator(/[a-z]/, { hasLowercaseLetter: true }),
+                  this.validatorsService.patternValidator(/[$&+,:;=?@#|'<>.^*()%!-]/, { hasSpecialCharacter: true })]]
   });
 
   ngOnInit(): void {
@@ -50,10 +60,4 @@ export class LoginComponent implements OnInit {
 
     this.miFormulario.reset();
   }
-
-  campoNoEsValido(campo: string) {
-    return this.miFormulario.controls[campo].errors &&
-           this.miFormulario.controls[campo].touched;
-  }
-
 }
