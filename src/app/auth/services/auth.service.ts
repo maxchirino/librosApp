@@ -8,8 +8,9 @@ import { map, Observable, of, tap } from 'rxjs';
 
 import { Auth } from '../interfaces/auth.interface';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DatosUsuario } from '../interfaces/datosUsuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,16 @@ export class AuthService {
 
   private baseUrl: string = environment.baseURL;
   private _auth: Auth | undefined; /* Si tiene algún valor, el usuario está identificado */
+  private _datosUsuario: DatosUsuario | undefined;
 
   /* Getter para obtener la propiedad auth (ya que la tengo privada) */
   get auth(): Auth {
     return {...this._auth!};
+  }
+  
+  /* Getter para obtener la propiedad datosUsuario (ya que la tengo privada) */
+  get datosUsuario(): DatosUsuario {
+    return {...this._datosUsuario!};
   }
 
   constructor(private http: HttpClient) { }
@@ -34,10 +41,24 @@ export class AuthService {
     return true;
   }
 
+  getDatosUsuario(auth: Auth): Observable<DatosUsuario> {
+    const url: string = `${this.baseUrl}/cuentas/datosusuario`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${auth.token}`
+    });
+    const requestOptions = { headers: headers };
+
+    return this.http.get<DatosUsuario>(url, requestOptions).pipe(
+      tap(datos => { this._datosUsuario = datos })
+    );
+  }
+
   login(body: any): Observable<Auth> {
     const url: string = `${this.baseUrl}/cuentas/login`;
     return this.http.post<Auth>(url, body).pipe(
-      tap(auth => this._auth = auth), /* Pongo la respuesta en la propiedad local */
+      tap(auth => {
+        this._auth = auth /* Pongo la respuesta en la propiedad local (token y expiracion) */
+      }), 
       tap(auth => localStorage.setItem('token', auth.token)) /* Guardo el token en el local storage */
     );
   }
@@ -52,3 +73,7 @@ export class AuthService {
     return this.http.post<Auth>(url, body);
   }
 }
+
+// HttpHeaders{
+//   Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1jaGlyaW5vQGdtYWlsLmNvbSIsImVzQWRtaW4iOiIxIiwiZXhwIjoxNzAxMTc5NzU4fQ.0MpGIoSj6sBr3-fNhgoerQzI3-kkw0-uKARFzBwlENw"
+// }

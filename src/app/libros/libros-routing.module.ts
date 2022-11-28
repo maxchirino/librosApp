@@ -11,12 +11,14 @@ import { AutorPorNombreComponent } from './pages/autor-por-nombre/autor-por-nomb
 import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-apellido.component';
 import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MiBibliotecaComponent } from './pages/mi-biblioteca/mi-biblioteca.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
+      { path: 'mi-biblioteca', component: MiBibliotecaComponent },
       { path: 'listado', component: ListadoComponent },
       { path: 'libro/:id', component: LibroComponent },
       { path: 'autor/:id', component: AutorComponent },

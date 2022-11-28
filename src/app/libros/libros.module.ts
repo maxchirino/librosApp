@@ -17,6 +17,7 @@ import { ResultadoAutorComponent } from './components/resultado-autor/resultado-
 import { InputAutorComponent } from './components/input-autor/input-autor.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
+import { MiBibliotecaComponent } from './pages/mi-biblioteca/mi-biblioteca.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { SharedModule } from '../shared/shared.module';
     ResultadoAutorComponent,
     InputAutorComponent,
     HomeComponent,
+    MiBibliotecaComponent,
   ],
   imports: [
     CommonModule,
