@@ -1,1 +1,10 @@
-<p>mi-biblioteca works!</p>
+<h3 class="mb-3 text-center">Mi Biblioteca</h3>
+<hr>
+<div class="row gap-5 animate__animated animate__fadeIn">
+  <div class="col d-flex justify-content-center" *ngFor="let libro of libros">
+    <app-libro-animado [libroHijo]="libro"></app-libro-animado>
+  </div>
+</div>
+<div *ngIf="bibliotecaVacia" class="text-center">
+  ¡Biblioteca vacía! Añade algunos libros.
+</div>

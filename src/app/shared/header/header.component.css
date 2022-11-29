@@ -2,6 +2,9 @@ nav {
   background-color: rgb(218, 215, 199);
 }
 
+h1 {
+  font-size: 1.8rem;
+}
 .navbar .navbar-nav .nav-item {
   margin-left: 1rem;
 }

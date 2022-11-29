@@ -2,8 +2,8 @@
   <div class="container-lg">
     <!-- Logo -->
     <div class="d-flex align-items-center logo" routerLink="/libros/listado">
-      <img src="../assets/book-icon.png" alt="LibrosApp" height="37" class="d-inline-block align-text-top">
-      <h1>LibrosApp</h1>
+      <img src="../assets/book-icon.png" alt="LibrosApp" height="28" class="d-inline-block align-text-top">
+      <h1 class="mb-1">LibrosApp</h1>
     </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="/libros/mi-biblioteca" routerLinkActive="active">Mi Biblioteca</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bold active">{{usuario}}</a>
         </li>
         <li class="nav-item">
           <a class="btn btn-danger" (click)="logout()">

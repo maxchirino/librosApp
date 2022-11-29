@@ -1,15 +1,21 @@
 <div *ngIf="cargado" class="row bg-light p-3 pt-4">
   <div class="col-xl-3 col-md-3 col-sm-12 izquierda">
-    <img class="img-fluid mb-2" 
-         [src]="libro.sourcePortada"
-         [alt]="libro.titulo">
+    <img class="img-fluid mb-2" [src]="libro.sourcePortada" [alt]="libro.titulo">
     <div class="d-grid gap-2">
       <a class="btn btn-success bold"
-         href="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
-         target="_blank">
-         <i class="bi bi-book-fill"></i> Leer libro
+        href="https://docs.google.com/viewer?srcid={{libro.urlIden}}&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
+        target="_blank">
+        <i class="bi bi-book-fill"></i> Leer libro
       </a>
-
+      <a class="btn btn-primary bold" *ngIf="!libroAgregado; else yaAgregado" (click)="agregarLibroABiblioteca()">
+        <i class="bi bi-plus"></i> Añadir a mi biblioteca
+      </a>
+      <ng-template #yaAgregado>
+        <a class="btn btn-secondary bold" (click)="eliminarLibroDeBiblioteca()">
+          <i class="bi bi-check-lg"></i> En la biblioteca
+        </a>
+      </ng-template>
+      
     </div>
   </div>
 
@@ -17,8 +23,7 @@
     <div class="p-3">
       <h1>{{ libro.titulo }}</h1>
       <h6>
-        <a [routerLink]="['/libros/autor', libro.autores[0].id]"
-           class="btn btn-link p-0">
+        <a [routerLink]="['/libros/autor', libro.autores[0].id]" class="btn btn-link p-0">
           {{ libro.autores[0].nombre }} {{ libro.autores[0].apellido }}
         </a>
       </h6>
@@ -30,10 +35,8 @@
       <p>
         {{ sinopsisIzq }}<span id="dots">...</span><span id="more">{{ sinopsisDer }}</span>
       </p>
-      <button id="myBtn" 
-              class="btn btn-link btn-sm" 
-              (click)="leerMasLeerMenos()">
-              Leer más
+      <button id="myBtn" class="btn btn-link btn-sm" (click)="leerMasLeerMenos()">
+        Leer más
       </button>
     </div>
 

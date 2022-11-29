@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -92,5 +92,35 @@ export class LibrosService {
   getComentarios(idLibro: string): Observable<Comentario[]> {
     const url: string = `${this.baseUrl}/libros/${idLibro}/comentarios`;
     return this.http.get<Comentario[]>(url);
+  }
+
+  /* ----------------------- BIBLIOTECA ----------------------- */
+
+  /* Obtener la biblioteca del usuario logeado */
+  getBiblioteca(token: string): Observable<Libro[]> {
+    const url: string = `${this.baseUrl}/bibliotecas`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<Libro[]>(url, requestOptions);
+  }
+
+  agregarLibroABiblioteca(id: string, token: string) {
+    const url: string = `${this.baseUrl}/bibliotecas/agregarLibro/${id}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.post(url, null, requestOptions);
+  }
+
+  borrarLibroDeBiblioteca(id: string, token: string) {
+    const url: string = `${this.baseUrl}/bibliotecas/borrar/${id}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(url, requestOptions);
   }
 }

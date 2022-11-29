@@ -13,7 +13,7 @@ interface MenuItem {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  usuario: string = '';
 
   submenuBuscarLibro: MenuItem[] = [
     {
@@ -47,6 +47,12 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const token: string | null = localStorage.getItem('token');
+    if (token) {
+      this.authService.getDatosUsuario(token).subscribe(datos => {
+        this.usuario = datos.email.substring(0, datos.email.indexOf('@')); /* Me quedo con lo que está antes del @ */
+      })
+    }
   }
 
   logout() {

@@ -58,22 +58,22 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // this.obs = this.authService.login(this.miFormulario.value).subscribe({
-    //   next: (auth: Auth) => {
-    //     this.loginIncorrecto = false;
-    //     console.log('Iniciando sesión...');
-    //     this.obs2 = this.authService.getDatosUsuario(auth).subscribe();
-    //     this.router.navigate(['./libros']);
-    //   },
-    //   error: () => {
-    //     this.loginIncorrecto = true;
-    //   }
-    // });
+    this.obs = this.authService.login(this.miFormulario.value).subscribe({
+      next: (auth: Auth) => {
+        this.loginIncorrecto = false;
+        console.log('Iniciando sesión...');
+        // this.obs2 = this.authService.getDatosUsuario(auth).subscribe();
+        this.router.navigate(['./libros']);
+      },
+      error: () => {
+        this.loginIncorrecto = true;
+      }
+    });
 
     // NO FUNCIONA COMO QUIERO
-    this.obs = this.authService.login(this.miFormulario.value).pipe(
-      mergeMap(auth => this.authService.getDatosUsuario(auth))
-    ).subscribe(datos => console.log(datos))
+    // this.obs = this.authService.login(this.miFormulario.value).pipe(
+    //   mergeMap(auth => this.authService.getDatosUsuario(auth))
+    // ).subscribe(datos => console.log(datos))
 
     this.miFormulario.reset();
   }

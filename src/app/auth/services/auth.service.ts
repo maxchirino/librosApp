@@ -41,10 +41,10 @@ export class AuthService {
     return true;
   }
 
-  getDatosUsuario(auth: Auth): Observable<DatosUsuario> {
+  getDatosUsuario(token: string): Observable<DatosUsuario> {
     const url: string = `${this.baseUrl}/cuentas/datosusuario`;
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${auth.token}`
+      'Authorization': `Bearer ${token}`
     });
     const requestOptions = { headers: headers };
 

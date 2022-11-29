@@ -12,15 +12,10 @@ import { AuthService } from '../../../auth/services/auth.service';
 export class ListadoComponent implements OnInit {
   libros: Libro[] = [];
 
-  constructor(
-    private librosService: LibrosService,
-    private authService: AuthService
-  ) { }
+  constructor(private librosService: LibrosService) { }
 
   ngOnInit(): void {
     this.librosService.getLibros().subscribe((libros: Libro[]) => { this.libros = libros });
-    console.log(this.authService.auth);
-    console.log(this.authService.datosUsuario);
   }
 
 }
