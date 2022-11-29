@@ -7,11 +7,11 @@
         target="_blank">
         <i class="bi bi-book-fill"></i> Leer libro
       </a>
-      <a class="btn btn-primary bold" *ngIf="!libroAgregado; else yaAgregado" (click)="agregarLibroABiblioteca()">
-        <i class="bi bi-plus"></i> Añadir a mi biblioteca
+      <a class="btn btn-primary bold btn-biblioteca" *ngIf="!libroAgregado; else yaAgregado" (click)="agregarLibroABiblioteca()">
+        <i class="bi bi-plus-lg"></i> Añadir a mi biblioteca
       </a>
       <ng-template #yaAgregado>
-        <a class="btn btn-secondary bold" (click)="eliminarLibroDeBiblioteca()">
+        <a class="btn btn-secondary bold btn-biblioteca" (click)="eliminarLibroDeBiblioteca()">
           <i class="bi bi-check-lg"></i> En la biblioteca
         </a>
       </ng-template>
@@ -54,12 +54,14 @@
     <div class="p-3">
       <h4>Comentarios</h4>
       <hr>
-      <form (ngSubmit)="subirComentario()" [formGroup]="miComentario" class="mb-5">
-        <textarea class="form-control mb-2" style="height: 100px" placeholder="Agregar comentario..."
-          formControlName="contenido"></textarea>
+      <form (ngSubmit)="subirComentario()" [formGroup]="miComentario">
+        <textarea class="form-control mb-2" 
+                  style="height: 100px" 
+                  placeholder="Agregar comentario..."
+                  formControlName="contenido">
+        </textarea>
         <button type="submit" class="btn btn-secondary btn-sm float-end">Publicar comentario</button>
       </form>
-      <hr>
       <div *ngFor="let comentario of comentarios" class="mb-4">
         <div class="row">
           <div class="col">
@@ -68,7 +70,9 @@
           </div>
           <div class="col-1 d-flex align-items-center"
                *ngIf="comentario.usuario === usuarioLogeado.email">
-            <a class="btn" (click)="borrarComentario(comentario.id)"><i class="bi bi-x-lg"></i></a>
+            <a class="btn btn-eliminar rounded-circle" (click)="borrarComentario(comentario.id)">
+              <i class="bi bi-x-lg text-danger"></i>
+            </a>
           </div>
         </div>
         <hr>
