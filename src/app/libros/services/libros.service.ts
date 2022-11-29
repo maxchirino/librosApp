@@ -94,6 +94,26 @@ export class LibrosService {
     return this.http.get<Comentario[]>(url);
   }
 
+  /* Agregar un comentario */
+  agregarComentario(id: string, token: string, comentario: any) {
+    const url: string = `${this.baseUrl}/libros/${id}/comentarios`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.post(url, comentario, requestOptions);
+  }
+
+  /* Borrar un comentario */
+  borrarComentario(idLibro: string, idComentario: string, token: string) {
+    const url: string = `${this.baseUrl}/libros/${idLibro}/comentarios/${idComentario}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(url, requestOptions);
+  }
+
   /* ----------------------- BIBLIOTECA ----------------------- */
 
   /* Obtener la biblioteca del usuario logeado */

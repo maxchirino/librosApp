@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LibrosRoutingModule } from './libros-routing.module';
 import { ListadoComponent } from './pages/listado/listado.component';
@@ -40,6 +40,7 @@ import { MiBibliotecaComponent } from './pages/mi-biblioteca/mi-biblioteca.compo
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     LibrosRoutingModule,
     SharedModule
   ]

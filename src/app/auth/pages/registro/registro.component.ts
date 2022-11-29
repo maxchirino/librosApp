@@ -52,8 +52,6 @@ export class RegistroComponent implements OnInit {
       next: (resp: Auth) => { 
         console.log('Registro exitoso');
         this.registroExitoso = true;
-        // this.authService.login(this.miFormulario.value);
-        // this.router.navigate(['./libros']);
        },
       error: (err) => { 
         this.registroExitoso = false;
