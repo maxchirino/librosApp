@@ -65,7 +65,7 @@ form {
   margin-bottom: 7rem;
 }
 
-.btn-eliminar:hover {
+.btn-eliminar:hover, .btn-editar:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 

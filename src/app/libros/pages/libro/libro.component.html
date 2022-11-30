@@ -62,22 +62,40 @@
         </textarea>
         <button type="submit" class="btn btn-secondary btn-sm float-end">Publicar comentario</button>
       </form>
-      <div *ngFor="let comentario of comentarios" class="mb-4">
+      <div *ngFor="let comentario of comentarios; let i = index" class="mb-4">
         <div class="row">
+          <!-- Contenido del Comentario -->
           <div class="col">
             <h6><i class="bi bi-person-fill"></i> {{comentario.usuario}}</h6>
-            <p class="ms-4">{{comentario.contenido}}</p>
+            <p class="ms-4"
+               *ngIf="comentario.mostrar">
+               {{comentario.contenido}}
+            </p>
+            <form (ngSubmit)="editarComentario(comentario.id, i)" 
+                  [formGroup]="miComentario" 
+                  *ngIf="!comentario.mostrar">
+              <textarea class="form-control mb-2"
+                        style="height: 80px;"
+                        placeholder="Editar comentario..."
+                        formControlName="contenido">
+              </textarea>
+              <button type="submit" class="btn btn-secondary btn-sm float-end">
+                Actualizar comentario
+              </button>
+            </form>
           </div>
-          <div class="col-1 d-flex align-items-center"
-               *ngIf="comentario.usuario === usuarioLogeado.email">
+          <!-- Botones de borrar y editar comentario -->
+          <div class="col-2 d-flex align-items-center justify-content-end"
+               *ngIf="(comentario.usuario === usuarioLogeado.email) && comentario.mostrar">
+            <a class="btn btn-editar rounded-circle" (click)="ocultarComentario(i)">
+              <i class="bi bi-pencil-fill"></i>
+            </a>
             <a class="btn btn-eliminar rounded-circle" (click)="borrarComentario(comentario.id)">
               <i class="bi bi-x-lg text-danger"></i>
             </a>
           </div>
         </div>
         <hr>
-        <!-- <h6><i class="bi bi-person-fill"></i> {{comentario.usuario}}</h6>
-        <p class="ms-4">{{comentario.contenido}}</p> -->
       </div>
     </div>
   </div>

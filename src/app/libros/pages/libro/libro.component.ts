@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Libro } from '../../interfaces/libro.interface';
@@ -12,28 +12,31 @@ import { AuthService } from '../../../auth/services/auth.service';
   templateUrl: './libro.component.html',
   styleUrls: ['./libro.component.css']
 })
-export class LibroComponent implements OnInit, OnDestroy {
+export class LibroComponent implements OnInit {
 
   libro!: Libro;
   cargado: boolean = false;
   sinopsisIzq: string = '';
   sinopsisDer: string = '';
-  comentarios: Comentario[] = [];
   idLibro: string = '';
+  
   /* Biblioteca */
   libroAgregado: boolean = false;
-
-  /* Comentario */
+  
+  /* Comentarios */
+  comentarios: Comentario[] = [];
   miComentario: FormGroup = this.fb.group({
     contenido: [, [Validators.required, Validators.minLength(1)]]
   });
 
+  /* Información del usuario logeado */
   usuarioLogeado = {
     email: '',
     esAdmin: false
   }
 
-  obs: any;
+  /* Token */
+  token: string | null = localStorage.getItem('token');
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,11 +45,6 @@ export class LibroComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) { }
 
-  ngOnDestroy() {
-    if (this.obs) {
-      this.obs.unsuscribe();
-    }
-  }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -58,7 +56,6 @@ export class LibroComponent implements OnInit, OnDestroy {
         this.cargado = true;
         this.sinopsisIzq = libro.sinopsis.substring(0, libro.sinopsis.length / 2);
         this.sinopsisDer = libro.sinopsis.substring(libro.sinopsis.length / 2);
-
       });
 
     this.activatedRoute.params
@@ -66,20 +63,18 @@ export class LibroComponent implements OnInit, OnDestroy {
         switchMap(param => this.librosService.getComentarios(param['id']))
       )
       .subscribe(comentarios => {
-        // console.log(comentarios);
         this.comentarios = comentarios;
+        this.comentarios.forEach(c => c.mostrar = true);
         this.comentarios.reverse(); /* Invierto el arreglo para que los comentarios recientes se muestren primero */
       });
 
     this.activatedRoute.params.subscribe(param => this.idLibro = param['id']);
     this.verificarSiEstaAgregado();
 
-    const token: string | null = localStorage.getItem('token');
-    if (token) {
-      this.authService.getDatosUsuario(token).subscribe({
+    if (this.token) {
+      this.authService.getDatosUsuario(this.token).subscribe({
         next: (datosUsuario) => {
           this.usuarioLogeado = datosUsuario;
-          // console.log(this.usuarioLogeado);
         }
       })
     }
@@ -102,11 +97,10 @@ export class LibroComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* Agregar libro a la biblioteca personal */
   agregarLibroABiblioteca() {
-    const id: string = this.libro.id.toString();
-    const token: string | null = localStorage.getItem('token');
-    if (token && id) {
-      this.librosService.agregarLibroABiblioteca(id, token).subscribe({
+    if (this.token && this.idLibro) {
+      this.librosService.agregarLibroABiblioteca(this.idLibro, this.token).subscribe({
         next: () => {
           console.log('Libro agregado a biblioteca');
           this.libroAgregado = true;
@@ -120,9 +114,8 @@ export class LibroComponent implements OnInit, OnDestroy {
 
   /* Esto lo uso para mantener el estado del botón, dependiendo si el libro está en la biblioteca o no */
   verificarSiEstaAgregado() {
-    const token: string | null = localStorage.getItem('token');
-    if (token) {
-      this.librosService.getBiblioteca(token).subscribe({
+    if (this.token) {
+      this.librosService.getBiblioteca(this.token).subscribe({
         next: (biblioteca: Libro[]) => {
           /* Si el libro está en la biblioteca, pongo la propiedad en true */
           this.libroAgregado = biblioteca.some(e => e.id === Number(this.idLibro));
@@ -134,11 +127,10 @@ export class LibroComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* Eliminar libro de la biblioteca personal */
   eliminarLibroDeBiblioteca() {
-    const id: string = this.libro.id.toString();
-    const token: string | null = localStorage.getItem('token');
-    if (token && id) {
-      this.librosService.borrarLibroDeBiblioteca(id, token).subscribe({
+    if (this.token && this.idLibro) {
+      this.librosService.borrarLibroDeBiblioteca(this.idLibro, this.token).subscribe({
         next: () => {
           console.log('Libro borrado de la biblioteca');
           this.libroAgregado = false;
@@ -147,16 +139,15 @@ export class LibroComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* Publicar un comentario */
   subirComentario() {
     if (this.miComentario.invalid) {
       this.miComentario.markAllAsTouched();
       return;
     }
-
-    const id: string = this.libro.id.toString();
-    const token: string | null = localStorage.getItem('token');
-    if(token) {
-      this.obs = this.librosService.agregarComentario(id, token, this.miComentario.value).subscribe({
+    
+    if(this.token) {
+      this.librosService.agregarComentario(this.idLibro, this.token, this.miComentario.value).subscribe({
         next: () => {
           window.location.reload();
         },
@@ -166,18 +157,14 @@ export class LibroComponent implements OnInit, OnDestroy {
       });
     }
     this.miComentario.reset();
-    
-    // console.log(this.miComentario.controls['contenido'].value);
   }
 
+  /* Eliminar un comentario publicado por el usuario */
   borrarComentario(idComent: number) {
     const idComentario = idComent.toString();
-    const idLibro: string = this.libro.id.toString();
-    const token: string | null = localStorage.getItem('token');
-    if (token) {
-      this.librosService.borrarComentario(idLibro, idComentario, token).subscribe({
+    if (this.token) {
+      this.librosService.borrarComentario(this.idLibro, idComentario, this.token).subscribe({
         next: () => {
-          console.log('Comentario borrado');
           window.location.reload();
         },
         error: () => {
@@ -185,5 +172,33 @@ export class LibroComponent implements OnInit, OnDestroy {
         }
       })
     }
+  }
+
+  /* Editar un comentario publicado por el usuario */
+  editarComentario(idComent: number, indexComentario: number) {
+    if (this.miComentario.invalid) {
+      this.miComentario.markAllAsTouched();
+      return;
+    }
+    const idComentario: string = idComent.toString();
+    if (this.token) {
+      this.librosService.editarComentario(this.idLibro, idComentario, this.token, this.miComentario.value).subscribe({
+        next: () => {
+          /* Vuelvo a mostrar el comentario */
+          this.comentarios[indexComentario].mostrar = true;
+          window.location.reload();
+        },
+        error: () => {
+          console.log('No se pudo editar el comentario');
+          this.comentarios[indexComentario].mostrar = true;
+        }
+      })
+    }
+    this.miComentario.reset();
+  }
+
+  ocultarComentario(indexComentarioAOcultar: number) {
+    /* Oculto únicamente el comentario a editar */
+    this.comentarios[indexComentarioAOcultar].mostrar = false;
   }
 }

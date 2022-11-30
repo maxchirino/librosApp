@@ -114,6 +114,16 @@ export class LibrosService {
     return this.http.delete(url, requestOptions);
   }
 
+  /* Editar un comentario */
+  editarComentario(idLibro: string, idComentario: string, token: string, comentario: any) {
+    const url: string = `${this.baseUrl}/libros/${idLibro}/comentarios/${idComentario}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.put(url, comentario, requestOptions);
+  }
+
   /* ----------------------- BIBLIOTECA ----------------------- */
 
   /* Obtener la biblioteca del usuario logeado */
