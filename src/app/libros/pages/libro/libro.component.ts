@@ -30,6 +30,10 @@ export class LibroComponent implements OnInit {
     contenido: [, [Validators.required, Validators.minLength(1)]]
   });
 
+  comentarioActualizado: FormGroup = this.fb.group({
+    contenido: [, [Validators.required, Validators.minLength(1)]]
+  })
+
   /* Información del usuario logeado */
   usuarioLogeado = {
     email: '',
@@ -160,7 +164,7 @@ export class LibroComponent implements OnInit {
     this.miComentario.reset();
   }
 
-  /* Eliminar un comentario publicado por el usuario */
+  // /* Eliminar un comentario publicado por el usuario */
   borrarComentario(idComent: number) {
     const idComentario = idComent.toString();
     if (this.token) {
@@ -175,15 +179,25 @@ export class LibroComponent implements OnInit {
     }
   }
 
+  comentarioABorrar: Comentario = {
+    id: -1,
+    contenido: '',
+    usuario: ''
+  };
+
+  guardarComentarioABorrar(comentario: Comentario) {
+    this.comentarioABorrar = comentario;
+  }
+
   /* Editar un comentario publicado por el usuario */
   editarComentario(idComent: number, indexComentario: number) {
-    if (this.miComentario.invalid) {
-      this.miComentario.markAllAsTouched();
+    if (this.comentarioActualizado.invalid) {
+      this.comentarioActualizado.markAllAsTouched();
       return;
     }
     const idComentario: string = idComent.toString();
     if (this.token) {
-      this.librosService.editarComentario(this.idLibro, idComentario, this.token, this.miComentario.value).subscribe({
+      this.librosService.editarComentario(this.idLibro, idComentario, this.token, this.comentarioActualizado.value).subscribe({
         next: () => {
           /* Vuelvo a mostrar el comentario */
           this.comentarios[indexComentario].mostrar = true;
@@ -200,6 +214,14 @@ export class LibroComponent implements OnInit {
 
   ocultarComentario(indexComentarioAOcultar: number) {
     /* Oculto únicamente el comentario a editar */
-    this.comentarios[indexComentarioAOcultar].mostrar = false;
+    if (this.comentarios[indexComentarioAOcultar].mostrar) {
+      this.comentarios[indexComentarioAOcultar].mostrar = false;
+      this.comentarioActualizado.setValue({
+        contenido: this.comentarios[indexComentarioAOcultar].contenido
+      });
+      return;
+    }
+    this.comentarios[indexComentarioAOcultar].mostrar = true;
   }
+
 }

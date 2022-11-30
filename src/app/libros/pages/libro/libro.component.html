@@ -67,35 +67,62 @@
       <div *ngFor="let comentario of comentarios; let i = index" class="mb-4">
         <div class="row">
           <!-- Contenido del Comentario -->
-          <div class="col">
+          <div class="col-sm-12 col-md">
             <h6><i class="bi bi-person-fill"></i> {{comentario.usuario}}</h6>
             <p class="ms-4" *ngIf="comentario.mostrar">
               {{comentario.contenido}}
             </p>
-            <form (ngSubmit)="editarComentario(comentario.id, i)" [formGroup]="miComentario"
+            <form (ngSubmit)="editarComentario(comentario.id, i)" [formGroup]="comentarioActualizado"
               *ngIf="!comentario.mostrar">
               <textarea class="form-control mb-2" 
                         style="height: 80px;" 
                         placeholder="Editar comentario..."
                         formControlName="contenido">
               </textarea>
-              <button type="submit" class="btn btn-secondary btn-sm float-end">
-                Actualizar comentario
-              </button>
+              <div class="float-end">
+                <button class="btn btn-light btn-sm" (click)="ocultarComentario(i)">Cancelar</button>
+                <button type="submit" class="btn btn-secondary btn-sm">
+                  Actualizar comentario
+                </button>
+              </div>
             </form>
           </div>
           <!-- Botones de borrar y editar comentario -->
-          <div class="col-2 d-flex align-items-center justify-content-end"
-            *ngIf="(comentario.usuario === usuarioLogeado.email) && comentario.mostrar">
+          <div class="col-sm-12 col-md-2 d-flex align-items-center justify-content-end"
+               *ngIf="(comentario.usuario === usuarioLogeado.email) && comentario.mostrar">
+
+            <!-- Editar comentario -->
             <a class="btn btn-editar rounded-circle" (click)="ocultarComentario(i)">
               <i class="bi bi-pencil-fill"></i>
             </a>
-            <a class="btn btn-eliminar rounded-circle" (click)="borrarComentario(comentario.id)">
+
+            <!-- Borrar Comentario -->
+            <a class="btn btn-eliminar rounded-circle" 
+            (click)="guardarComentarioABorrar(comentario)"
+            data-bs-toggle="modal" data-bs-target="#modalConfirmacion">
+            <!-- (click)="borrarComentario(comentario.id)" -->
               <i class="bi bi-x-lg text-danger"></i>
             </a>
+
           </div>
         </div>
         <hr>
+      </div>
+
+      <!-- Modal de confirmación para borrar comentario -->
+      <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5>¿Estás de seguro que deseas borrar este comentario?</h5>
+              <p class="bg-light p-3 mt-4 mb-3">{{comentarioABorrar.contenido}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger" (click)="borrarComentario(comentarioABorrar.id)">Borrar</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
