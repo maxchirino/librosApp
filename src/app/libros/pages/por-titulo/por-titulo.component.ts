@@ -8,7 +8,7 @@ import { LibrosService } from '../../services/libros.service';
   templateUrl: './por-titulo.component.html',
   styleUrls: ['./por-titulo.component.css']
 })
-export class PorTituloComponent  {
+export class PorTituloComponent {
 
   termino: string = '';
   hayError: boolean = false;
@@ -18,19 +18,16 @@ export class PorTituloComponent  {
 
   buscar() {
     this.hayError = false;
-    this.librosService.buscarLibroPorTitulo(this.termino)
-      .subscribe({
-        next: (libros) => {
-          this.libros = libros;
-          this.hayError = false;
-          // console.log(this.libros);
-        },
-        error: (err) => {
-          // console.info(err);
-          this.hayError = true;
-          this.libros = [];
-        }
-      })
+    this.librosService.buscarLibroPorTitulo(this.termino).subscribe({
+      next: (libros) => {
+        this.libros = libros;
+        this.hayError = false;
+      },
+      error: () => {
+        this.hayError = true;
+        this.libros = [];
+      }
+    })
   }
 
 }

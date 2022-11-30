@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { flatMap, mergeMap, Subscription } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   loginIncorrecto: boolean = false;
   
@@ -39,16 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
   }
-
-  obs!: Subscription;
-  obs2!: Subscription;
-
-  ngOnDestroy(): void {
-    // this.obs = this.authService.getDatosUsuario(this.auth).subscribe(datosUsuario => this.datosUsuario = datosUsuario);
-    // this.obs.unsubscribe();
-    // this.obs2.unsubscribe();
-  }
-
+  
   login() {
     /*
       Si quiero mostrar los errores cuando el usuario presione Guardar sin haber ingresado nada (y sin haber tocado los campos) uso markAllAsTouched que marcará todos los campos como tocados, y hará que la función campoNoEsValido sea true.
@@ -58,22 +49,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.obs = this.authService.login(this.miFormulario.value).subscribe({
-      next: (auth: Auth) => {
+    this.authService.login(this.miFormulario.value).subscribe({
+      next: () => {
         this.loginIncorrecto = false;
         console.log('Iniciando sesión...');
-        // this.obs2 = this.authService.getDatosUsuario(auth).subscribe();
         this.router.navigate(['./libros']);
       },
       error: () => {
         this.loginIncorrecto = true;
       }
     });
-
-    // NO FUNCIONA COMO QUIERO
-    // this.obs = this.authService.login(this.miFormulario.value).pipe(
-    //   mergeMap(auth => this.authService.getDatosUsuario(auth))
-    // ).subscribe(datos => console.log(datos))
 
     this.miFormulario.reset();
   }

@@ -17,28 +17,26 @@ export class AutoresComponent implements OnInit {
   constructor(private librosService: LibrosService) { }
 
   ngOnInit(): void {
-    this.librosService.getAutores()
-      .subscribe({
-        next: (autores: Autor[]) => {
-          this.autores = autores;
-        },
-        error: (err) => {
-          console.info(err);
-        }
-      });
+    this.librosService.getAutores().subscribe({
+      next: (autores: Autor[]) => {
+        this.autores = autores;
+      },
+      error: (err) => {
+        console.info(err);
+      }
+    });
   }
 
   ordenar(ordenarPor: string, tipoOrden: string) {
     this.ordenarPor = ordenarPor;
     this.tipoOrden = tipoOrden;
-    this.librosService.ordenarAutores(ordenarPor, tipoOrden)
-      .subscribe({
-        next: (autores: Autor[]) => {
-          this.autores = autores;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      })
+    this.librosService.ordenarAutores(ordenarPor, tipoOrden).subscribe({
+      next: (autores: Autor[]) => {
+        this.autores = autores;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

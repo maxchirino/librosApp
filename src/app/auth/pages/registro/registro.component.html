@@ -15,8 +15,8 @@
 
         <!-- Mensaje de error de validación -->
           <div class="form-text"
-                [ngClass]="miFormulario.controls['email'].hasError('required') || 
-                           miFormulario.controls['email'].hasError('pattern') ? 'text-danger' : 'text-success'">
+               [ngClass]="miFormulario.controls['email'].hasError('required') || 
+                          miFormulario.controls['email'].hasError('pattern') ? 'text-danger' : 'text-success'">
             Debe ser un email válido.
           </div>
       </div>
@@ -65,20 +65,4 @@
       </div>
     </form>
   </div>
-
-  <!-- Testing -->
-  <!-- Touched: el usuario ha tocado o no el formulario (no hace falta hacer cambios, solo con clickearlo esto se vuelve true) -->
-  <!-- Pristine: no se han cambiado ninguno de los valores con los que se presentó el formulario -->
-
-  <!-- <span><b>Valid</b></span>
-  <pre>{{miFormulario.valid}}</pre>
-
-  <span><b>Pristine</b></span>
-  <pre>{{miFormulario.pristine}}</pre>
-
-  <span><b>Touched</b></span>
-  <pre>{{miFormulario.touched}}</pre>
-
-  <span><b>Value</b></span>
-  <pre>{{miFormulario.value | json}}</pre> -->
 </div>

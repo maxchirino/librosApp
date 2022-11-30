@@ -6,7 +6,13 @@
       <h1 class="mb-1">LibrosApp</h1>
     </div>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -14,13 +20,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/libros/listado" routerLinkActive="active">Libros</a>
+          <a class="nav-link" 
+            aria-current="page" 
+            routerLink="/libros/listado" 
+            routerLinkActive="active">
+            Libros
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/libros/autores" routerLinkActive="active">Autores</a>
+          <a class="nav-link" 
+             routerLink="/libros/autores" 
+             routerLinkActive="active">
+             Autores
+          </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" 
+             role="button" 
+             data-bs-toggle="dropdown" 
+             aria-expanded="false">
             Buscar libros
           </a>
           <ul class="dropdown-menu">
@@ -30,7 +48,10 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" 
+             role="button" 
+             data-bs-toggle="dropdown" 
+             aria-expanded="false">
             Buscar autores
           </a>
           <ul class="dropdown-menu">
@@ -40,7 +61,12 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/libros/mi-biblioteca" routerLinkActive="active">Mi Biblioteca</a>
+          <a class="nav-link" 
+             aria-current="page" 
+             routerLink="/libros/mi-biblioteca" 
+             routerLinkActive="active">
+             Mi Biblioteca
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link bold active">{{usuario}}</a>
@@ -54,16 +80,3 @@
     </div>
   </div>
 </nav>
-
-<!-- <form autocomplete="off">
-<input type="text" class="form-control" name="termino" placeholder="Buscar libro...">
-</form> -->
-
-<!-- /////////////////////// -->
-<!-- <li *ngFor="let item of menu" 
-    class="dropdown-item" 
-    [routerLink]="item.ruta" 
-    routerLinkActive="active">
-  {{ item.texto }}
-</li> -->
-<!-- /////////////////////// -->

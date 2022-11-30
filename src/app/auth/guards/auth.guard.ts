@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -44,6 +45,5 @@ export class AuthGuard implements CanActivate, CanLoad {
     console.log('Bloqueado por el AuthGuard (canLoad)');
     this.router.navigate(['./auth/login']);
     return false;
-
   }
 }

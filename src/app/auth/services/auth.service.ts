@@ -73,7 +73,3 @@ export class AuthService {
     return this.http.post<Auth>(url, body);
   }
 }
-
-// HttpHeaders{
-//   Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1jaGlyaW5vQGdtYWlsLmNvbSIsImVzQWRtaW4iOiIxIiwiZXhwIjoxNzAxMTc5NzU4fQ.0MpGIoSj6sBr3-fNhgoerQzI3-kkw0-uKARFzBwlENw"
-// }

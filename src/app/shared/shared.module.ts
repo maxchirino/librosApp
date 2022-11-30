@@ -4,15 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 
 
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent,
-    SidemenuComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +18,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
   ],
   exports: [
     FooterComponent,
-    HeaderComponent,
-    SidemenuComponent
+    HeaderComponent
   ]
 })
 export class SharedModule { }

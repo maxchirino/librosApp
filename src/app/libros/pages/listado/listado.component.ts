@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { LibrosService } from '../../services/libros.service';
 import { Libro } from '../../interfaces/libro.interface';
-import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-listado',

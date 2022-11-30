@@ -14,7 +14,6 @@ import { AutorPorApellidoComponent } from './pages/autor-por-apellido/autor-por-
 import { AutorPorNombreOApellidoComponent } from './pages/autor-por-nombre-o-apellido/autor-por-nombre-o-apellido.component';
 import { LibroAnimadoComponent } from './components/libro-animado/libro-animado.component';
 import { ResultadoAutorComponent } from './components/resultado-autor/resultado-autor.component';
-import { InputAutorComponent } from './components/input-autor/input-autor.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { MiBibliotecaComponent } from './pages/mi-biblioteca/mi-biblioteca.component';
@@ -33,7 +32,6 @@ import { MiBibliotecaComponent } from './pages/mi-biblioteca/mi-biblioteca.compo
     AutorPorNombreOApellidoComponent,
     LibroAnimadoComponent,
     ResultadoAutorComponent,
-    InputAutorComponent,
     HomeComponent,
     MiBibliotecaComponent,
   ],

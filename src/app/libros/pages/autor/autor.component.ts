@@ -26,11 +26,8 @@ export class AutorComponent implements OnInit {
         switchMap(param => this.librosService.getAutorPorId(param['id']))
       )
       .subscribe(autor => {
-        // console.log(autor);
         this.autor = autor;
         this.cargado = true;
       });
-
   }
-
 }

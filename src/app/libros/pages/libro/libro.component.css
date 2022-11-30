@@ -23,7 +23,6 @@ img {
 
 }
 
-
 .readmore.expand {
   max-height: 5000px !important;
   transition: max-height 0.35s ease-in-out;
@@ -60,12 +59,12 @@ img {
   content: "Read less";
 }
 
-
 form {
   margin-bottom: 7rem;
 }
 
-.btn-eliminar:hover, .btn-editar:hover {
+.btn-eliminar:hover,
+.btn-editar:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -78,7 +77,8 @@ form {
     margin-bottom: 2rem;
   }
 
-  .btn-success, .btn-biblioteca {
+  .btn-success,
+  .btn-biblioteca {
     font-size: 1.2rem;
     padding: 0.8rem 0;
   }

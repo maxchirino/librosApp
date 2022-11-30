@@ -7,7 +7,9 @@
         target="_blank">
         <i class="bi bi-book-fill"></i> Leer libro
       </a>
-      <a class="btn btn-primary bold btn-biblioteca" *ngIf="!libroAgregado; else yaAgregado" (click)="agregarLibroABiblioteca()">
+      <a class="btn btn-primary bold btn-biblioteca" 
+         *ngIf="!libroAgregado; else yaAgregado"
+         (click)="agregarLibroABiblioteca()">
         <i class="bi bi-plus-lg"></i> Añadir a mi biblioteca
       </a>
       <ng-template #yaAgregado>
@@ -67,15 +69,13 @@
           <!-- Contenido del Comentario -->
           <div class="col">
             <h6><i class="bi bi-person-fill"></i> {{comentario.usuario}}</h6>
-            <p class="ms-4"
-               *ngIf="comentario.mostrar">
-               {{comentario.contenido}}
+            <p class="ms-4" *ngIf="comentario.mostrar">
+              {{comentario.contenido}}
             </p>
-            <form (ngSubmit)="editarComentario(comentario.id, i)" 
-                  [formGroup]="miComentario" 
-                  *ngIf="!comentario.mostrar">
-              <textarea class="form-control mb-2"
-                        style="height: 80px;"
+            <form (ngSubmit)="editarComentario(comentario.id, i)" [formGroup]="miComentario"
+              *ngIf="!comentario.mostrar">
+              <textarea class="form-control mb-2" 
+                        style="height: 80px;" 
                         placeholder="Editar comentario..."
                         formControlName="contenido">
               </textarea>
@@ -86,7 +86,7 @@
           </div>
           <!-- Botones de borrar y editar comentario -->
           <div class="col-2 d-flex align-items-center justify-content-end"
-               *ngIf="(comentario.usuario === usuarioLogeado.email) && comentario.mostrar">
+            *ngIf="(comentario.usuario === usuarioLogeado.email) && comentario.mostrar">
             <a class="btn btn-editar rounded-circle" (click)="ocultarComentario(i)">
               <i class="bi bi-pencil-fill"></i>
             </a>

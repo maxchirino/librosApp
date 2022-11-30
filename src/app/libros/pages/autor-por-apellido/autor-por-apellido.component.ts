@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { Autor } from '../../interfaces/autor.interface';
 import { LibrosService } from '../../services/libros.service';
 
@@ -7,7 +8,7 @@ import { LibrosService } from '../../services/libros.service';
   templateUrl: './autor-por-apellido.component.html',
   styleUrls: ['./autor-por-apellido.component.css']
 })
-export class AutorPorApellidoComponent  {
+export class AutorPorApellidoComponent {
 
   termino: string = '';
   hayError: boolean = false;
@@ -16,18 +17,17 @@ export class AutorPorApellidoComponent  {
   constructor(private librosService: LibrosService) { }
 
   buscar() {
-    this.librosService.buscarAutorPorApellido(this.termino)
-      .subscribe({
-        next: (autores: Autor[]) => {
-          this.autores = autores;
-          this.hayError = false;
-        },
-        error: (err) => {
-          console.info(err);
-          this.hayError = true;
-          this.autores = [];
-        }
-      })
+    this.librosService.buscarAutorPorApellido(this.termino).subscribe({
+      next: (autores: Autor[]) => {
+        this.autores = autores;
+        this.hayError = false;
+      },
+      error: (err) => {
+        console.info(err);
+        this.hayError = true;
+        this.autores = [];
+      }
+    })
   }
 
 }

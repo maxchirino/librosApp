@@ -18,19 +18,18 @@ export class PorAutorComponent {
 
   buscar() {
     this.hayError = false;
-    this.librosService.buscarLibroPorAutor(this.termino)
-      .subscribe({
-        next: (libros) => {
-          this.arrLibros = libros;
-          /* Como recibo un arreglo de arreglos, uso flat para que quede un simple arreglo de libros */
-          this.libros = this.arrLibros.flat();
-          this.hayError = false;
-        },
-        error: (err) => {
-          this.hayError = true;
-          this.arrLibros = [];
-          this.libros = [];
-        }
-      })
+    this.librosService.buscarLibroPorAutor(this.termino).subscribe({
+      next: (libros) => {
+        this.arrLibros = libros;
+        /* Como recibo un arreglo de arreglos, uso flat para que quede un simple arreglo de libros */
+        this.libros = this.arrLibros.flat();
+        this.hayError = false;
+      },
+      error: () => {
+        this.hayError = true;
+        this.arrLibros = [];
+        this.libros = [];
+      }
+    })
   }
 }
