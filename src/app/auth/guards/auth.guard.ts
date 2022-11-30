@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   /* Con esto prevengo que el usuario acceda a ciertas rutas si no está autenticado */
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
     if (this.authService.auth.token || this.authService.verificarAutenticacion()) {
       return true;
     }
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate, CanLoad {
    */
   canLoad(
     route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+    segments: UrlSegment[]): Observable<boolean> | boolean {
     /* 
       Verifico que exista el token al hacer la petición (que sea un usuario que existe). O que exista un token en el local storage (que se borra solo cuando toco 'Salir').
       Nota: no pregunto directamente si existe this.authService.auth porque al hacer la desestructuración en el getter, siempre va a existir un objeto (aunque no tenga la información necesaria).
