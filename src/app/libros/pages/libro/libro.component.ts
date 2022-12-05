@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { switchMap } from 'rxjs';
+import { switchMap, Subscription } from 'rxjs';
 
 import { Libro } from '../../interfaces/libro.interface';
 import { LibrosService } from '../../services/libros.service';
@@ -47,9 +47,11 @@ export class LibroComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private librosService: LibrosService,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
+  subscripcionComentarios!: any;
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -74,6 +76,7 @@ export class LibroComponent implements OnInit {
       });
 
     this.activatedRoute.params.subscribe(param => this.idLibro = param['id']);
+
     this.verificarSiEstaAgregado();
 
     if (this.token) {
@@ -154,7 +157,8 @@ export class LibroComponent implements OnInit {
     if(this.token) {
       this.librosService.agregarComentario(this.idLibro, this.token, this.miComentario.value).subscribe({
         next: () => {
-          window.location.reload();
+          // window.location.reload();
+          this.reloadCurrentRoute();
         },
         error: () => {
           console.log('Error al tratar de agregar comentario');
@@ -171,6 +175,8 @@ export class LibroComponent implements OnInit {
       this.librosService.borrarComentario(this.idLibro, idComentario, this.token).subscribe({
         next: () => {
           window.location.reload();
+          /* No uso la funcion reloadCurrentRoute porque se queda colgado el modal de Bootstrap */
+          // this.reloadCurrentRoute();
         },
         error: () => {
           console.log('No se pudo borrar el comentario');
@@ -201,7 +207,9 @@ export class LibroComponent implements OnInit {
         next: () => {
           /* Vuelvo a mostrar el comentario */
           this.comentarios[indexComentario].mostrar = true;
-          window.location.reload();
+          // window.location.reload();
+          // this.ngOnInit();
+          this.reloadCurrentRoute();
         },
         error: () => {
           console.log('No se pudo editar el comentario');
@@ -211,6 +219,13 @@ export class LibroComponent implements OnInit {
     }
     this.miComentario.reset();
   }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+}
 
   ocultarComentario(indexComentarioAOcultar: number) {
     /* Oculto únicamente el comentario a editar */
