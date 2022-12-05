@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class RegistroComponent implements OnInit {
 
   registroExitoso: boolean = false;
+  registroDuplicado: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -49,9 +50,11 @@ export class RegistroComponent implements OnInit {
       next: () => {
         console.log('Registro exitoso');
         this.registroExitoso = true;
+        this.registroDuplicado = false;
       },
       error: (err) => {
         this.registroExitoso = false;
+        this.registroDuplicado = true;
         console.log('Fallo en el registro');
         console.log(err)
       }

@@ -6,6 +6,10 @@
       ¡Registro exitoso!
       <a routerLink="./auth/login" class="text-success bold">Ingresar</a>
     </div>
+    <div class="alert alert-danger" *ngIf="registroDuplicado">
+      Error al registrarse. Ya existe un usuario con ese email.
+      <a routerLink="./auth/login" class="text-danger bold">Ingresar</a>
+    </div>
 
     <form (ngSubmit)="register()" [formGroup]="miFormulario">
       <!-- Email input -->
